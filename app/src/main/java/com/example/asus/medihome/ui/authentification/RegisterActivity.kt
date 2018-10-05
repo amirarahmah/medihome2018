@@ -1,10 +1,12 @@
-package com.example.asus.medihome
+package com.example.asus.medihome.ui.authentification
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
+import com.example.asus.medihome.MainActivity
+import com.example.asus.medihome.R
 import com.example.asus.medihome.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
