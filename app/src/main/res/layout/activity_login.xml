@@ -41,7 +41,7 @@
                 android:paddingBottom="10dp"
                 android:paddingLeft="12dp"
                 android:paddingTop="10dp"
-                android:textColorHint="@color/lightGreen" />
+                android:textColorHint="@color/colorPrimary" />
 
             <EditText
                 android:id="@+id/password_et"
@@ -49,15 +49,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/edittext_background"
                 android:ems="10"
                 android:hint="Password"
-                android:inputType="textEmailAddress"
+                android:inputType="textPassword"
                 android:paddingBottom="10dp"
                 android:paddingLeft="12dp"
                 android:paddingTop="10dp"
-                android:textColorHint="@color/lightGreen" />
+                android:textColorHint="@color/colorPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -68,7 +68,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="8dp"
                 android:text="Lupa Password ?"
-                android:textColor="@color/orange" />
+                android:textColor="@color/colorAccent" />
 
             <Button
                 android:id="@+id/login_btn"
@@ -77,7 +77,7 @@
                 android:layout_marginBottom="24dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="@color/orange"
+                android:background="@color/colorAccent"
                 android:text="Login"
                 android:textColor="#fff" />
         </LinearLayout>
@@ -94,7 +94,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:background="@color/lightGreen" />
+                android:background="@color/colorPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:text="atau"
-                android:textColor="@color/lightGreen" />
+                android:textColor="@color/colorPrimary" />
 
 
             <View
@@ -110,7 +110,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:background="@color/lightGreen" />
+                android:background="@color/colorPrimary" />
 
         </LinearLayout>
 
@@ -161,13 +161,13 @@
                 android:layout_height="wrap_content"
                 android:text="Tidak punya akun ?"
                 android:layout_marginRight="8dp"
-                android:textColor="@color/lightGreen"/>
+                android:textColor="@color/colorPrimary"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Daftar"
-                android:textColor="@color/orange"/>
+                android:textColor="@color/colorAccent"/>
 
         </LinearLayout>
 

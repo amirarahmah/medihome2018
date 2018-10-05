@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.ProgressBar
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import com.google.firebase.auth.FirebaseUser
@@ -23,7 +24,8 @@ class LoginActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         progressDialog = ProgressDialog(this)
-        progressDialog.setMessage("")
+        progressDialog.setMessage("Silahkan Menunggu..")
+        progressDialog.setCancelable(false)
 
         login_btn.setOnClickListener {
             loginUser()
@@ -44,6 +46,23 @@ class LoginActivity : AppCompatActivity() {
 
         if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
             progressDialog.show()
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task ->
+                        progressDialog.dismiss()
+                        if(task.isSuccessful){
+                            val intent = Intent(this, MainActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            startActivity(intent)
+                        }else{
+                            Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
+                        }
+                    }
+        }else if (email.isEmpty() && password.isEmpty()){
+            Toast.makeText(this,"Mohon masukan email dan password", Toast.LENGTH_SHORT).show()
+        }else if (email.isEmpty()){
+            Toast.makeText(this,"Mohon masukan email", Toast.LENGTH_SHORT).show()
+        }else if (password.isEmpty()){
+            Toast.makeText(this,"Mohon masukan password", Toast.LENGTH_SHORT).show()
         }
 
     }
