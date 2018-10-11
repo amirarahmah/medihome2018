@@ -7,4 +7,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="booking_kamar">Booking Kamar</string>
+    <string name="booking_description"><![CDATA[Temukan rumah sakit & pesan berbagai pilihan kamar rawat inap sesuai kebutuhan]]></string>
+    <string name="klinik_spesialis"><![CDATA[Klinik & Praktik Spesialis]]></string>
+    <string name="klinik_spesialis_description">Temukan berbagai tempat Praktek Dokter sesuai spesialisasi yang anda butuhkan</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

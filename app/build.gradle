@@ -45,6 +45,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:16.0.4'
     implementation 'com.google.firebase:firebase-storage:16.0.3'
 
+    //geofire
+    implementation 'com.firebase:geofire-android:2.3.1'
+
     //progress dialog
     implementation 'com.lmntrx.android.library.livin.missme:missme:0.1.5'
 
@@ -55,6 +58,10 @@ dependencies {
     //pager indicator
     implementation 'me.relex:circleindicator:1.2.2@aar'
 
+    //google maps & places
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+    implementation 'com.google.android.gms:play-services-places:16.0.0'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

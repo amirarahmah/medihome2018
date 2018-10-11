@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#EFEFEF">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,7 +19,98 @@
             android:id="@+id/indicator"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentBottom="true">
+
+        </me.relex.circleindicator.CircleIndicator>
 
     </RelativeLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/menu_booking_kamar"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/logo_hospital"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="12dp"
+                android:src="@drawable/medihome_hospital_logo"/>
+
+            <TextView
+                android:id="@+id/booking_tv"
+                android:layout_marginTop="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/booking_kamar"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                android:layout_toRightOf="@id/logo_hospital"/>
+
+            <TextView
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="12dp"
+                android:layout_below="@+id/booking_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/booking_description"
+                android:textSize="11sp"
+                android:layout_toRightOf="@id/logo_hospital"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/menu_klinik_spesialis"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/logo_klinik"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="12dp"
+                android:src="@drawable/medihome_stethoscope_logo"/>
+
+            <TextView
+                android:id="@+id/klinik_tv"
+                android:layout_marginTop="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/klinik_spesialis"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                android:layout_toRightOf="@id/logo_klinik"/>
+
+            <TextView
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="12dp"
+                android:layout_below="@+id/klinik_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/klinik_spesialis_description"
+                android:textSize="11sp"
+                android:layout_toRightOf="@id/logo_klinik"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
 </LinearLayout>
