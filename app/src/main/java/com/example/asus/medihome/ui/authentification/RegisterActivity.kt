@@ -9,6 +9,7 @@ import com.example.asus.medihome.MainActivity
 import com.example.asus.medihome.R
 import com.example.asus.medihome.model.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.lmntrx.android.library.livin.missme.ProgressDialog
@@ -84,7 +85,22 @@ class RegisterActivity : AppCompatActivity() {
 
             }else{
                 progressDialog.dismiss()
-                Toast.makeText(applicationContext, task.exception.toString(), Toast.LENGTH_SHORT).show()
+                val errorCode = (task.exception as FirebaseAuthException).errorCode
+
+                when (errorCode) {
+
+                    "ERROR_WEAK_PASSWORD" ->
+                        Toast.makeText(this, "Password harus memiliki minimal 6 karakter",
+                                Toast.LENGTH_LONG).show()
+
+                    "ERROR_EMAIL_ALREADY_IN_USE" ->
+                        Toast.makeText(this, "Email sudah digunakan oleh akun lain",
+                                Toast.LENGTH_LONG).show()
+                    else ->
+                        Toast.makeText(this, ""+
+                                (task.exception as FirebaseAuthException).message,
+                                Toast.LENGTH_LONG).show()
+                }
             }
         }
 

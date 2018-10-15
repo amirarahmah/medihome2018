@@ -1,10 +1,15 @@
 package com.example.asus.medihome
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import com.example.asus.medihome.ui.emergency.AmbulansActivity
 import com.example.asus.medihome.ui.home.HomeFragment
+import com.example.asus.medihome.ui.info_sehat.InfoSehatFragment
+import com.example.asus.medihome.ui.pesanan.PesananFragment
+import com.example.asus.medihome.ui.profil.ProfilFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -20,30 +25,40 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
+                supportActionBar?.title = "MediHome"
                 updateFragment(HomeFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_info_sehat -> {
-
+                supportActionBar?.title = "Info Sehat"
+                updateFragment(InfoSehatFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_emergency -> {
-
+                navigateToAmbulansActivity()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_pesanan -> {
-
+                supportActionBar?.title = "Pesanan Saya"
+                updateFragment(PesananFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_profile -> {
-
+                supportActionBar?.title = "Profil Saya"
+                updateFragment(ProfilFragment())
                 return@OnNavigationItemSelectedListener true
             }
         }
         false
+    }
+
+    private fun navigateToAmbulansActivity() {
+        val intent = Intent(this, AmbulansActivity::class.java)
+        startActivity(intent)
     }
 
 

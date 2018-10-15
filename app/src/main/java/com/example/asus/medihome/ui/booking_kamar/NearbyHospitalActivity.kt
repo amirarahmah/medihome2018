@@ -6,12 +6,14 @@ import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Location
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.example.asus.medihome.R
 import android.support.v4.app.ActivityCompat
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
+import com.example.asus.medihome.R
 import com.example.asus.medihome.model.Hospital
 import com.example.asus.medihome.ui.booking_kamar.adapter.HospitalAdapter
 import com.firebase.geofire.GeoFire
@@ -29,15 +31,15 @@ class NearbyHospitalActivity : AppCompatActivity() {
     private val REQUEST_CHECK_SETTINGS = 100
 
     private lateinit var mLocationCallback: LocationCallback
-    private lateinit var mLocationRequest : LocationRequest
+    private lateinit var mLocationRequest: LocationRequest
     private lateinit var mFusedLocationProviderClient: FusedLocationProviderClient
 
     lateinit var geoFire: GeoFire
-    lateinit var hospitalRef : DatabaseReference
+    lateinit var hospitalRef: DatabaseReference
 
     var listHospitals: ArrayList<Hospital> = arrayListOf()
-    lateinit var mAdapter : HospitalAdapter
-    lateinit var nama : String
+    lateinit var mAdapter: HospitalAdapter
+    lateinit var nama: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,11 +104,10 @@ class NearbyHospitalActivity : AppCompatActivity() {
     }
 
 
-
-    private fun getNearbyHospital(location : Location){
-
-        val geoQuery = geoFire.queryAtLocation(GeoLocation(location.latitude, location.longitude),50.0)
-        geoQuery.addGeoQueryEventListener(object : GeoQueryEventListener{
+    private fun getNearbyHospital(location: Location) {
+        progressBar.visibility = View.VISIBLE
+        val geoQuery = geoFire.queryAtLocation(GeoLocation(location.latitude, location.longitude), 50.0)
+        geoQuery.addGeoQueryEventListener(object : GeoQueryEventListener {
             override fun onGeoQueryReady() {
 
             }
@@ -124,13 +125,34 @@ class NearbyHospitalActivity : AppCompatActivity() {
             }
 
             override fun onKeyEntered(key: String, location: GeoLocation?) {
-                hospitalRef.child(key).addValueEventListener(object : ValueEventListener{
+                hospitalRef.child(key).addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(p0: DatabaseError) {
+
                     }
 
                     override fun onDataChange(p0: DataSnapshot) {
+                        progressBar.visibility = View.GONE
                         val hospital = p0.getValue(Hospital::class.java)
-                        listHospitals.add(hospital!!)
+                        if(listHospitals.size > 0){
+                            var dataExist = false
+                            var dataPosition = -1
+                            for (i in 0 until listHospitals.size) {
+                                if (listHospitals[i].lat == hospital?.lat &&
+                                        listHospitals[i].lng == hospital?.lng){
+                                    dataExist = true
+                                    dataPosition = i
+                                }
+                            }
+
+                            if(!dataExist){
+                                listHospitals.add(hospital!!)
+                            }else{
+                                listHospitals[dataPosition] = hospital!!
+                            }
+
+                        }else{
+                            listHospitals.add(hospital!!)
+                        }
 
                         mAdapter.notifyDataSetChanged()
                     }
@@ -141,7 +163,6 @@ class NearbyHospitalActivity : AppCompatActivity() {
 
 
     }
-
 
 
     private fun checkLocationSetting() {
@@ -217,7 +238,7 @@ class NearbyHospitalActivity : AppCompatActivity() {
                                             grantResults: IntArray) {
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(requestCode == REQUEST_LOCATION){
+        if (requestCode == REQUEST_LOCATION) {
             if (grantResults.size == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // We can now safely use the API we requested access to
                 getDeviceLocation()
@@ -231,6 +252,17 @@ class NearbyHospitalActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         mFusedLocationProviderClient.removeLocationUpdates(mLocationCallback)
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+        return false
     }
 
 }

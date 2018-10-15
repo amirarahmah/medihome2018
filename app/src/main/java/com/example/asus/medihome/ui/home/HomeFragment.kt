@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.asus.medihome.MainActivity
 
 import com.example.asus.medihome.R
 import com.example.asus.medihome.ui.booking_kamar.CariRumahSakitActivity
@@ -25,12 +26,21 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val images = arrayOf(R.drawable.iklan, R.drawable.iklan, R.drawable.iklan)
+        val images = arrayOf(R.drawable.ads, R.drawable.iklan, R.drawable.iklan)
 
         val viewPagerAdapter = ViewPagerAdapter(context, images)
         viewPager.adapter = viewPagerAdapter
         indicator.setViewPager(viewPager)
 
+        menu_booking_kamar.setOnClickListener {
+            val intent = Intent(context, CariRumahSakitActivity::class.java)
+            startActivity(intent)
+        }
+
     }
+
+
+
+
 
 }

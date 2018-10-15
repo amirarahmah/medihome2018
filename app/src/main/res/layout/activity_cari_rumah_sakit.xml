@@ -1,9 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.booking_kamar.CariRumahSakitActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/btn_terakhir_dilihat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:text="@string/terakhir_dilihat"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimary"/>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/divider_grey"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cari Berdasarkan"
+        android:layout_margin="4dp"
+        android:textColor="@color/colorPrimary"/>
+    
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/spinner_cari_berdasarkan"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:background="@drawable/spinner_background">
+
+    </android.support.v7.widget.AppCompatSpinner>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/divider_grey"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/container_cari_lokasi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/divider_grey"
+            app:layout_constraintStart_toStartOf="@+id/pilih_fasilitas_tv"
+            app:layout_constraintTop_toBottomOf="@+id/fasilitas_tv" />
+
+        <TextView
+            android:id="@+id/fasilitas_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:paddingBottom="10dp"
+            android:text="Bebas"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/pilih_fasilitas_tv"
+            app:layout_constraintTop_toBottomOf="@+id/pilih_fasilitas_tv" />
+
+        <TextView
+            android:id="@+id/pilih_fasilitas_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Pilih Fasilitas"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/icon_pilih_fasilitas"
+            app:layout_constraintStart_toEndOf="@+id/icon_pilih_fasilitas" />
+
+        <ImageView
+            android:id="@+id/icon_pilih_fasilitas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/icon_pilih_spesialisasi"
+            app:srcCompat="@drawable/medihome_facility_icon" />
+
+        <TextView
+            android:id="@+id/spesialisasi_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:paddingBottom="10dp"
+            android:text="Bebas"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/pilih_spesialisasi_tv"
+            app:layout_constraintTop_toBottomOf="@+id/pilih_spesialisasi_tv" />
+
+        <TextView
+            android:id="@+id/pilih_spesialisasi_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Pilih Spesialisasi"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/icon_pilih_spesialisasi"
+            app:layout_constraintStart_toStartOf="@+id/pilih_tindakan_tv" />
+
+        <ImageView
+            android:id="@+id/icon_pilih_spesialisasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/icon_pilih_tindakan"
+            app:srcCompat="@drawable/medihome_spesialisasi_icon" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/divider_grey"
+            app:layout_constraintStart_toStartOf="@+id/spesialisasi_tv"
+            app:layout_constraintTop_toBottomOf="@+id/spesialisasi_tv" />
+
+        <ImageView
+            android:id="@+id/icon_pilih_tindakan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/icon_pilih_lokasi"
+            app:srcCompat="@drawable/medihome_tindakan_medis_icon" />
+
+        <TextView
+            android:id="@+id/tindakan_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:paddingBottom="10dp"
+            android:text="Bebas"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/pilih_tindakan_tv"
+            app:layout_constraintTop_toBottomOf="@+id/pilih_tindakan_tv" />
+
+        <TextView
+            android:id="@+id/pilih_tindakan_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="8dp"
+            android:text="Pilih Tindakan Medis"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/icon_pilih_tindakan"
+            app:layout_constraintStart_toEndOf="@+id/icon_pilih_tindakan" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/divider_grey"
+            app:layout_constraintStart_toStartOf="@+id/pilih_tindakan_tv"
+            app:layout_constraintTop_toBottomOf="@+id/tindakan_tv" />
+
+        <ImageView
+            android:id="@+id/icon_pilih_lokasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/medihome_location_icon" />
+
+        <TextView
+            android:id="@+id/pilih_lokasi_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Pilih Lokasi"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/icon_pilih_lokasi"
+            app:layout_constraintStart_toEndOf="@+id/icon_pilih_lokasi" />
+
+        <TextView
+            android:id="@+id/lokasi_rumah_sakit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Rumah Sakit Sekitar Anda"
+            app:layout_constraintStart_toStartOf="@+id/pilih_lokasi_tv"
+            app:layout_constraintTop_toBottomOf="@+id/pilih_lokasi_tv" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/divider_grey"
+            app:layout_constraintStart_toStartOf="@+id/pilih_lokasi_tv"
+            app:layout_constraintTop_toBottomOf="@+id/lokasi_rumah_sakit" />
+
+        <Button
+            android:id="@+id/btn_cari"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/cari"
+            android:textColor="@color/white"
+            android:background="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</LinearLayout>
