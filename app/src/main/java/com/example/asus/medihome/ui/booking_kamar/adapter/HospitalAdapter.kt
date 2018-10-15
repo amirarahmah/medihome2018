@@ -10,7 +10,9 @@ import com.bumptech.glide.Glide
 import com.example.asus.medihome.R
 import com.example.asus.medihome.model.Hospital
 
-class HospitalAdapter(val listHospital : ArrayList<Hospital>) : RecyclerView.Adapter<HospitalAdapter.MyViewHolder>() {
+class HospitalAdapter(val listHospital : ArrayList<Hospital>,
+                      val clickListener: (Hospital) -> Unit)
+    : RecyclerView.Adapter<HospitalAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -30,6 +32,8 @@ class HospitalAdapter(val listHospital : ArrayList<Hospital>) : RecyclerView.Ada
         holder.nameTextView.text = listHospital[position].nama
         holder.locationTextView.text = listHospital[position].alamat
 
+        holder.bind(listHospital[position], clickListener)
+
     }
 
 
@@ -39,6 +43,12 @@ class HospitalAdapter(val listHospital : ArrayList<Hospital>) : RecyclerView.Ada
         val typeTextView = itemView.findViewById<TextView>(R.id.hospital_type)
         val locationTextView = itemView.findViewById<TextView>(R.id.hospital_location)
 
+        fun bind(hospital: Hospital,
+                 clickListener: (Hospital) -> Unit) {
+
+            itemView.setOnClickListener { clickListener(hospital) }
+
+        }
 
     }
 

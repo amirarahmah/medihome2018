@@ -8,6 +8,8 @@ import android.widget.Toast
 import com.example.asus.medihome.MainActivity
 import com.example.asus.medihome.R
 import com.example.asus.medihome.model.User
+import com.example.asus.medihome.util.PreferenceHelper
+import com.example.asus.medihome.util.PreferenceHelper.set
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.database.DatabaseReference
@@ -78,6 +80,13 @@ class RegisterActivity : AppCompatActivity() {
                 //send user data to firebase database
                 userRef.child(userId).setValue(newUser).addOnCompleteListener{task ->
                     progressDialog.dismiss()
+
+                    val prefs = PreferenceHelper.defaultPrefs(this)
+
+                    prefs["nama"] = nama
+                    prefs["email"] = email
+                    prefs["noTelp"] = nomorTelpon
+
                     val intent = Intent(this, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     startActivity(intent)

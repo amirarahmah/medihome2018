@@ -16,6 +16,7 @@ import android.widget.Toast
 import com.example.asus.medihome.R
 import com.example.asus.medihome.model.Hospital
 import com.example.asus.medihome.ui.booking_kamar.adapter.HospitalAdapter
+import com.example.asus.medihome.ui.booking_kamar.profile_rs.ProfilRumahSakitActivity
 import com.firebase.geofire.GeoFire
 import com.firebase.geofire.GeoLocation
 import com.firebase.geofire.GeoQueryEventListener
@@ -76,8 +77,20 @@ class NearbyHospitalActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        mAdapter = HospitalAdapter(listHospitals)
+        mAdapter = HospitalAdapter(listHospitals) { hospital: Hospital -> hospitalClicked(hospital) }
         recyclerView.adapter = mAdapter
+    }
+
+    private fun hospitalClicked(hospital: Hospital) {
+        val intent = Intent(this, ProfilRumahSakitActivity::class.java)
+        intent.putExtra("hospitalId", hospital.hospitalId)
+        intent.putExtra("nama", hospital.nama)
+        intent.putExtra("nomorTelpon", hospital.nomorTelpon)
+        intent.putExtra("alamat", hospital.alamat)
+        intent.putExtra("lat", hospital.lat)
+        intent.putExtra("lng", hospital.lng)
+        intent.putExtra("photo", hospital.photo)
+        startActivity(intent)
     }
 
 
@@ -133,24 +146,24 @@ class NearbyHospitalActivity : AppCompatActivity() {
                     override fun onDataChange(p0: DataSnapshot) {
                         progressBar.visibility = View.GONE
                         val hospital = p0.getValue(Hospital::class.java)
-                        if(listHospitals.size > 0){
+                        if (listHospitals.size > 0) {
                             var dataExist = false
                             var dataPosition = -1
                             for (i in 0 until listHospitals.size) {
                                 if (listHospitals[i].lat == hospital?.lat &&
-                                        listHospitals[i].lng == hospital?.lng){
+                                        listHospitals[i].lng == hospital?.lng) {
                                     dataExist = true
                                     dataPosition = i
                                 }
                             }
 
-                            if(!dataExist){
+                            if (!dataExist) {
                                 listHospitals.add(hospital!!)
-                            }else{
+                            } else {
                                 listHospitals[dataPosition] = hospital!!
                             }
 
-                        }else{
+                        } else {
                             listHospitals.add(hospital!!)
                         }
 
