@@ -14,9 +14,9 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash_screen)
 
         requestWindowFeature(Window.FEATURE_NO_TITLE)
+        setContentView(R.layout.activity_splash_screen)
 
         val user = FirebaseAuth.getInstance().currentUser
 

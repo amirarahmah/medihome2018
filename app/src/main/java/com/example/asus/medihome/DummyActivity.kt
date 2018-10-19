@@ -21,16 +21,16 @@ class DummyActivity : AppCompatActivity() {
         val hospitalRef = FirebaseDatabase.getInstance().reference.child("hospital")
 
         val hospitalId = hospitalRef.push().key
-        val hospital = Hospital(hospitalId!!, "RSU Islam Harapan Anda",
-                "0283358244",
-                "Randugunting, Tegal Sel., Tegal", "",
-                -6.876230, 109.128419)
+        val hospital = Hospital(hospitalId!!, "RS Islam Siti Hajar",
+                "0318921233",
+                "Jasem, Bulusidokare, Sidoarjo", "", "",
+                -7.457630, 112.722055)
 
         val hospitalId2 = hospitalRef.push().key
-        val hospital2 = Hospital(hospitalId2!!, "RS Mitra Keluarga Tegal",
-                "(0283) 340999",
-                "Kemandungan, Kraton, Tegal Bar.", "",
-                -6.866644, 109.121214)
+        val hospital2 = Hospital(hospitalId2!!, "RS Delta Surya",
+                "0318962531",
+                "Jati, Sidoarjo", "", "",
+                -7.447080, 112.701572)
 
         hospitalRef.child(hospitalId).setValue(hospital).addOnCompleteListener { task ->
             hospitalRef.child(hospitalId2).setValue(hospital2).addOnCompleteListener{task ->

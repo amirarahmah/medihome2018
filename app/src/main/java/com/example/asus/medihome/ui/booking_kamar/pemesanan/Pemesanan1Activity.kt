@@ -38,6 +38,7 @@ class Pemesanan1Activity : AppCompatActivity() {
         val dateFormater = SimpleDateFormat("dd-MM-yyyy", Locale.US)
         val formatedDate = dateFormater.format(date)
 
+
         tanggal_pesan.text = formatedDate
 
     }

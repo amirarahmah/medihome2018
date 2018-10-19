@@ -11,10 +11,15 @@ import kotlinx.android.synthetic.main.activity_profil_rumah_sakit.*
 class ProfilRumahSakitActivity : AppCompatActivity() {
 
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
+    private var hospitalName : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profil_rumah_sakit)
+
+        hospitalName = intent?.extras?.getString("nama")
+
+        collapse_toolbar.title = hospitalName
 
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -29,11 +34,14 @@ class ProfilRumahSakitActivity : AppCompatActivity() {
 
         setProfileRumahSakit()
 
+        btn_pesan_kamar.setOnClickListener {
+            tabs.getTabAt(1)?.select()
+        }
+
     }
 
     private fun setProfileRumahSakit() {
         val hospitalId = intent?.extras?.getString("hospitalId")
-        val hospitalName = intent?.extras?.getString("nama")
         val hospitalAlamat = intent?.extras?.getString("alamat")
         val hospitalPhone = intent?.extras?.getString("nomorTelpon")
         val photo = intent?.extras?.getString("photo")
@@ -44,7 +52,6 @@ class ProfilRumahSakitActivity : AppCompatActivity() {
 
         hospital_name.text = hospitalName
         hospital_location.text = hospitalAlamat
-
 
 
     }

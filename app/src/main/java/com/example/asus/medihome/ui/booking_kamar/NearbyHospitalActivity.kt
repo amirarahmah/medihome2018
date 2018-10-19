@@ -16,6 +16,7 @@ import android.widget.Toast
 import com.example.asus.medihome.R
 import com.example.asus.medihome.model.Hospital
 import com.example.asus.medihome.ui.booking_kamar.adapter.HospitalAdapter
+import com.example.asus.medihome.ui.booking_kamar.dialog.SortingDialog
 import com.example.asus.medihome.ui.booking_kamar.profile_rs.ProfilRumahSakitActivity
 import com.firebase.geofire.GeoFire
 import com.firebase.geofire.GeoLocation
@@ -29,7 +30,8 @@ import kotlinx.android.synthetic.main.activity_nearby_hospital.*
 class NearbyHospitalActivity : AppCompatActivity() {
 
     val REQUEST_LOCATION = 900
-    private val REQUEST_CHECK_SETTINGS = 100
+    val REQUEST_CHECK_SETTINGS = 100
+    val SORTING = 200
 
     private lateinit var mLocationCallback: LocationCallback
     private lateinit var mLocationRequest: LocationRequest
@@ -61,10 +63,22 @@ class NearbyHospitalActivity : AppCompatActivity() {
 
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
+        sort.visibility = View.GONE
+
         setupFirebase()
         setupRecyclerView()
         checkLocationSetting()
 
+        sort.setOnClickListener {
+            showSortingDialog()
+        }
+
+    }
+
+    private fun showSortingDialog() {
+        val sortingDialog = SortingDialog.newInstance()
+        val fragmentManager = supportFragmentManager
+        sortingDialog.show(fragmentManager, "sorting_fragment")
     }
 
 
@@ -87,6 +101,7 @@ class NearbyHospitalActivity : AppCompatActivity() {
         intent.putExtra("nama", hospital.nama)
         intent.putExtra("nomorTelpon", hospital.nomorTelpon)
         intent.putExtra("alamat", hospital.alamat)
+        intent.putExtra("alamatFull", hospital.alamatFull)
         intent.putExtra("lat", hospital.lat)
         intent.putExtra("lng", hospital.lng)
         intent.putExtra("photo", hospital.photo)
@@ -145,6 +160,7 @@ class NearbyHospitalActivity : AppCompatActivity() {
 
                     override fun onDataChange(p0: DataSnapshot) {
                         progressBar.visibility = View.GONE
+                        sort.visibility = View.VISIBLE
                         val hospital = p0.getValue(Hospital::class.java)
                         if (listHospitals.size > 0) {
                             var dataExist = false

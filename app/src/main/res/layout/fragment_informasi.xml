@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,8 +19,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:text="Fasilitas Rumah Sakit" />
+            android:layout_marginTop="12dp"
+            android:text="@string/fasilitas_rumah_sakit" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="12dp"
+            android:id="@+id/fasilitas_recyclerView"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp">
+
+        </android.support.v7.widget.RecyclerView>
 
         <View
             android:layout_width="match_parent"
@@ -32,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:text="Dokter Rumah Sakit" />
+            android:text="@string/dokter_rumah_sakit" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -46,19 +57,19 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="30dp"
                 android:layout_toLeftOf="@+id/divider_dokter"
-                android:text="Dokter Umum" />
+                android:text="@string/dokter_umum" />
 
             <TextView
                 android:id="@+id/jumlah_dokter_umum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_alignStart="@id/tv_dokter_umum"
                 android:layout_below="@+id/tv_dokter_umum"
+                android:layout_alignStart="@id/tv_dokter_umum"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="2dp"
                 android:layout_marginRight="30dp"
                 android:layout_toStartOf="@+id/divider_dokter"
+                android:gravity="center_horizontal"
                 android:text="30"
                 android:textSize="30sp" />
 
@@ -71,28 +82,37 @@
                 android:background="@color/divider_grey" />
 
             <TextView
-                android:layout_marginLeft="30dp"
                 android:id="@+id/tv_dokter_spesialis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@+id/divider_dokter"
-                android:text="Dokter Spesialis" />
+                android:text="@string/dokter_spesialis" />
 
             <TextView
                 android:id="@+id/jumlah_dokter_spesialis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_alignEnd="@id/tv_dokter_spesialis"
-                android:layout_alignStart="@id/tv_dokter_spesialis"
                 android:layout_below="@+id/tv_dokter_umum"
+                android:layout_alignStart="@id/tv_dokter_spesialis"
+                android:layout_alignEnd="@id/tv_dokter_spesialis"
                 android:layout_marginTop="2dp"
                 android:layout_toEndOf="@+id/divider_dokter"
+                android:gravity="center_horizontal"
                 android:text="30"
                 android:textSize="30sp" />
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/jumlah_dokter_umum"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/lihat_semua_daftar"
+                android:textColor="@color/colorAccent" />
 
         </RelativeLayout>
 
@@ -107,16 +127,38 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:text="Lokasi" />
+            android:text="@string/lokasi" />
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/map"
-            android:layout_marginTop="10dp"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="170dp"
+            android:layout_marginTop="10dp"
             tools:context=".MapsActivity" />
+
+        <TextView
+            android:id="@+id/alamat_hospital"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="16dp"
+            android:drawableLeft="@drawable/medihome_location_icon"
+            android:drawablePadding="8dp"
+            tools:text="JL Soekarno Hatta Lowokwaru Malang" />
+
+        <TextView
+            android:id="@+id/phone_hospital"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:drawableLeft="@drawable/medihome_profile_phone_icon"
+            android:drawablePadding="8dp"
+            tools:text="031856673" />
 
         <View
             android:layout_width="match_parent"
@@ -129,16 +171,19 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:text="Deskripsi Rumah Sakit" />
+            android:text="@string/deskripsi_rumah_sakit" />
 
         <TextView
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="@string/dskripsi_dummy"/>
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="100dp"
+            android:text="@string/dskripsi_dummy"
+            android:textAlignment="center" />
 
 
     </LinearLayout>
 
-</ScrollView>
+</android.support.v4.widget.NestedScrollView>
