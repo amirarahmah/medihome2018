@@ -29,7 +29,7 @@ class Pemesanan1Activity : AppCompatActivity() {
         email_pemesan.text = "Alamat Email : $emailPemesan"
         no_telepon_pemesan.text = "Nomor Telepon : $noTelp"
 
-        val hospitalName = intent?.extras?.getString("nama")
+        val hospitalName = intent?.extras?.getString("hospitalName")
         val jenisKamar = intent?.extras?.getString("jenisKamar")
         nama_hospital.text = hospitalName
         jenis_kamar.text = jenisKamar
