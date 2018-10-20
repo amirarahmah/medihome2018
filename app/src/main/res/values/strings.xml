@@ -25,4 +25,18 @@
     <string name="lokasi">Lokasi</string>
     <string name="lihat_semua_daftar">Lihat semua daftar</string>
     <string name="pesan_kamar">Pesan Kamar</string>
+    <string name="data_pasien">Data Pasien</string>
+    <string name="laki_laki">Laki-laki</string>
+    <string name="perempuan">Perempuan</string>
+    <string name="jenis_kelamin">Jenis Kelamin</string>
+    <string name="tempat_lahir">Tempat Lahir</string>
+    <string name="tanggal_lahir">Tanggal Lahir</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="status_perkawinan">Status Perkawinan</string>
+    <string name="alamat_domisili">Alamat Domisili</string>
+    <string name="pekerjaan">Pekerjaan</string>
+    <string name="golongan_darah">Golongan Darah</string>
+    <string name="rincian_harga">Rincian Harga</string>
+    <string name="informasi">Informasi</string>
+    <string name="kamar">Kamar</string>
 </resources>

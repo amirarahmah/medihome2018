@@ -30,7 +30,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-        <activity android:name=".SplashActivity"
+
+        <activity
+            android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,22 +45,21 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.authentification.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" />
         <activity android:name=".ui.booking_kamar.CariRumahSakitActivity" />
-        <activity android:name=".DummyActivity" >
-
-        </activity>
+        <activity android:name=".DummyActivity" />
         <activity android:name=".ui.booking_kamar.NearbyHospitalActivity" />
         <activity
             android:name=".ui.booking_kamar.profile_rs.ProfilRumahSakitActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.emergency.AmbulansActivity" />
-        <activity android:name=".ui.booking_kamar.pemesanan.Pemesanan1Activity" />
-
+        <activity android:name=".ui.booking_kamar.pemesanan.IsiDataActivity" />
+        <activity android:name=".ui.booking_kamar.pemesanan.ReviewPemesananActivity" />
+        <activity android:name=".ui.booking_kamar.pemesanan.MetodePembayaranActivity" />
+        <activity android:name=".ui.booking_kamar.pemesanan.TransferActivity"></activity>
     </application>
 
 </manifest>

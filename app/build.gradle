@@ -66,6 +66,9 @@ dependencies {
     //circle image view
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 
+    //expandable recyclerview
+    implementation 'com.thoughtbot:expandablecheckrecyclerview:1.4'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

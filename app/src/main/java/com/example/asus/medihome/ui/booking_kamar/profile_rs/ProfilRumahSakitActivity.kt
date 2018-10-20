@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.view.MenuItem
+import android.view.View
 import com.bumptech.glide.Glide
 import com.example.asus.medihome.R
 import kotlinx.android.synthetic.main.activity_profil_rumah_sakit.*
@@ -25,12 +26,32 @@ class ProfilRumahSakitActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
-        mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
+        mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager, this)
 
         container.adapter = mSectionsPagerAdapter
 
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
-        tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
+
+        tabs.setupWithViewPager(container)
+        tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+            override fun onTabReselected(p0: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabUnselected(p0: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                val tabPosition = tab.position
+                if(tabPosition == 0){
+                    btn_pesan_kamar.visibility = View.VISIBLE
+                }else{
+                    btn_pesan_kamar.visibility = View.GONE
+                }
+            }
+
+        })
 
         setProfileRumahSakit()
 

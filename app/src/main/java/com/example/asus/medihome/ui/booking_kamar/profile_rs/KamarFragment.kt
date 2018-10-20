@@ -1,8 +1,6 @@
 package com.example.asus.medihome.ui.booking_kamar.profile_rs
 
-import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -13,7 +11,7 @@ import android.view.ViewGroup
 import com.example.asus.medihome.R
 import com.example.asus.medihome.model.Kamar
 import com.example.asus.medihome.ui.booking_kamar.adapter.KamarAdapter
-import com.example.asus.medihome.ui.booking_kamar.pemesanan.Pemesanan1Activity
+import com.example.asus.medihome.ui.booking_kamar.pemesanan.IsiDataActivity
 import kotlinx.android.synthetic.main.fragment_kamar.*
 
 class KamarFragment : Fragment() {
@@ -48,11 +46,12 @@ class KamarFragment : Fragment() {
     private fun onPesanKamarClicked(kamar: Kamar) {
         val hospitalId = activity?.intent?.extras?.getString("hospitalId")
         val hospitalName = activity?.intent?.extras?.getString("nama")
-        val intent = Intent(context, Pemesanan1Activity::class.java)
+        val intent = Intent(context, IsiDataActivity::class.java)
         intent.putExtra("hospitalId", hospitalId)
         intent.putExtra("hospitalName", hospitalName)
         intent.putExtra("kamarId", kamar.idKamar)
         intent.putExtra("jenisKamar", kamar.jenisKamar)
+        intent.putExtra("hargaKamar", kamar.harga)
         startActivity(intent)
     }
 
