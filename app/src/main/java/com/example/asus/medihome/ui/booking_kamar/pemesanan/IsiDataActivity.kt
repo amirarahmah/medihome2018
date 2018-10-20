@@ -12,7 +12,7 @@ import com.example.asus.medihome.ui.booking_kamar.pemesanan.dialog.DataPasienDia
 import com.example.asus.medihome.ui.booking_kamar.pemesanan.dialog.DataPemesanDialog
 import com.example.asus.medihome.util.PreferenceHelper
 import com.example.asus.medihome.util.PreferenceHelper.set
-import kotlinx.android.synthetic.main.activity_pemesanan1.*
+import kotlinx.android.synthetic.main.activity_isi_data.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -80,7 +80,7 @@ class IsiDataActivity : AppCompatActivity(), DataPemesanDialog.OnDataSaved,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pemesanan1)
+        setContentView(R.layout.activity_isi_data)
 
         supportActionBar?.title = "Isi Data"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

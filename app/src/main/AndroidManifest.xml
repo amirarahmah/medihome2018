@@ -59,7 +59,8 @@
         <activity android:name=".ui.booking_kamar.pemesanan.IsiDataActivity" />
         <activity android:name=".ui.booking_kamar.pemesanan.ReviewPemesananActivity" />
         <activity android:name=".ui.booking_kamar.pemesanan.MetodePembayaranActivity" />
-        <activity android:name=".ui.booking_kamar.pemesanan.TransferActivity"></activity>
+        <activity android:name=".ui.booking_kamar.pemesanan.TransferActivity" />
+        <activity android:name=".ui.booking_kamar.profile_rs.DetailKamarActivity"></activity>
     </application>
 
 </manifest>

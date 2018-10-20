@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="12dp"
+            android:textAllCaps="true"
             android:text="@string/fasilitas_rumah_sakit" />
 
         <android.support.v7.widget.RecyclerView
@@ -43,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
+            android:textAllCaps="true"
             android:text="@string/dokter_rumah_sakit" />
 
         <RelativeLayout
@@ -127,7 +129,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:text="@string/lokasi" />
+            android:text="@string/lokasi"
+            android:textAllCaps="true"/>
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -171,6 +174,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
+            android:textAllCaps="true"
             android:text="@string/deskripsi_rumah_sakit" />
 
         <TextView

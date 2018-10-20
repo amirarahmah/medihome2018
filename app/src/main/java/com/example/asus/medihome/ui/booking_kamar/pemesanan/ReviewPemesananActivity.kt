@@ -8,7 +8,7 @@ import android.view.MenuItem
 import com.example.asus.medihome.R
 import com.example.asus.medihome.util.PreferenceHelper
 import com.example.asus.medihome.util.PreferenceHelper.set
-import kotlinx.android.synthetic.main.activity_pemesanan2.*
+import kotlinx.android.synthetic.main.activity_review_pemesanan.*
 import java.util.*
 
 class ReviewPemesananActivity : AppCompatActivity() {
@@ -17,7 +17,7 @@ class ReviewPemesananActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pemesanan2)
+        setContentView(R.layout.activity_review_pemesanan)
 
         supportActionBar?.title = "Review Pesanan"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

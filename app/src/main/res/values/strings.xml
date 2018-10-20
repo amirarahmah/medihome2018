@@ -39,4 +39,8 @@
     <string name="rincian_harga">Rincian Harga</string>
     <string name="informasi">Informasi</string>
     <string name="kamar">Kamar</string>
+    <string name="fasilitas_kamar">Fasilitas Kamar</string>
+    <string name="harga_per_malam">Harga Per Malam</string>
+    <string name="deskripsi_kamar">Deskripsi Kamar</string>
+    <string name="pesan">Pesan</string>
 </resources>

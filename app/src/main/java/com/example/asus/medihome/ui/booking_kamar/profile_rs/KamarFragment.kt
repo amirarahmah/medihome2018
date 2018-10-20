@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.example.asus.medihome.R
 import com.example.asus.medihome.model.Kamar
 import com.example.asus.medihome.ui.booking_kamar.adapter.KamarAdapter
@@ -16,8 +15,8 @@ import kotlinx.android.synthetic.main.fragment_kamar.*
 
 class KamarFragment : Fragment() {
 
-    lateinit var mAdapter : KamarAdapter
-    lateinit var kamarList : ArrayList<Kamar>
+    lateinit var mAdapter: KamarAdapter
+    lateinit var kamarList: ArrayList<Kamar>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -39,8 +38,20 @@ class KamarFragment : Fragment() {
 
     private fun setupRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(context)
-        mAdapter = KamarAdapter(kamarList) { kamar ->  onPesanKamarClicked(kamar)}
+        mAdapter = KamarAdapter(kamarList,
+                { kamar -> onPesanKamarClicked(kamar) },
+                { kamar -> onKamarClicked(kamar) })
+
         recyclerView.adapter = mAdapter
+    }
+
+    private fun onKamarClicked(kamar: Kamar) {
+        val hospitalName = activity?.intent?.extras?.getString("nama")
+        val intent = Intent(context, DetailKamarActivity::class.java)
+        intent.putExtra("hospitalName", hospitalName)
+        intent.putExtra("jenisKamar", kamar.jenisKamar)
+        intent.putExtra("hargaKamar", kamar.harga)
+        startActivity(intent)
     }
 
     private fun onPesanKamarClicked(kamar: Kamar) {

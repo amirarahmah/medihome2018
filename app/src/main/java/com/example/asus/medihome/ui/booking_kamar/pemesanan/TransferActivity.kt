@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_transfer.*
 class TransferActivity : AppCompatActivity() {
 
     private lateinit var prefs : SharedPreferences
+    private var cTimer : CountDownTimer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +39,25 @@ class TransferActivity : AppCompatActivity() {
             saveOrderTodatabase()
         }
 
+
+        startTimer()
+
+
+    }
+
+    private fun startTimer() {
+        cTimer = object : CountDownTimer(3540 * 1000+1000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                var seconds = (millisUntilFinished / 1000)
+                val minutes = seconds / 60
+                seconds %= 60
+
+                waktu_pembayaran.text = String.format("%d:%02d", minutes, seconds);
+
+            }
+            override fun onFinish() {}
+        }
+        cTimer?.start()
     }
 
     private fun saveOrderTodatabase() {

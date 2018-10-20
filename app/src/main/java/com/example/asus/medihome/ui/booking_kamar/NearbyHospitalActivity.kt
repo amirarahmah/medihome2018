@@ -117,6 +117,7 @@ class NearbyHospitalActivity : AppCompatActivity() {
                     arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                     REQUEST_LOCATION)
         } else {
+            progressBar.visibility = View.VISIBLE
             //permission granted
             mFusedLocationProviderClient.lastLocation
                     .addOnSuccessListener(this) { location ->
@@ -133,7 +134,6 @@ class NearbyHospitalActivity : AppCompatActivity() {
 
 
     private fun getNearbyHospital(location: Location) {
-        progressBar.visibility = View.VISIBLE
         val geoQuery = geoFire.queryAtLocation(GeoLocation(location.latitude, location.longitude), 50.0)
         geoQuery.addGeoQueryEventListener(object : GeoQueryEventListener {
             override fun onGeoQueryReady() {
@@ -167,7 +167,7 @@ class NearbyHospitalActivity : AppCompatActivity() {
                             var dataPosition = -1
                             for (i in 0 until listHospitals.size) {
                                 if (listHospitals[i].lat == hospital?.lat &&
-                                        listHospitals[i].lng == hospital?.lng) {
+                                        listHospitals[i].lng == hospital.lng) {
                                     dataExist = true
                                     dataPosition = i
                                 }
