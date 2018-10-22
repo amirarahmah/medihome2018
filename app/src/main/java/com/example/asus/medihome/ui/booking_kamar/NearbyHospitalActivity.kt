@@ -137,25 +137,27 @@ class NearbyHospitalActivity : AppCompatActivity() {
         val geoQuery = geoFire.queryAtLocation(GeoLocation(location.latitude, location.longitude), 50.0)
         geoQuery.addGeoQueryEventListener(object : GeoQueryEventListener {
             override fun onGeoQueryReady() {
-
+                progressBar.visibility = View.GONE
             }
 
             override fun onKeyMoved(key: String?, location: GeoLocation?) {
-
+                progressBar.visibility = View.GONE
             }
 
             override fun onKeyExited(key: String?) {
-
+                progressBar.visibility = View.GONE
             }
 
             override fun onGeoQueryError(error: DatabaseError) {
+                progressBar.visibility = View.GONE
                 Toast.makeText(this@NearbyHospitalActivity, error.message, Toast.LENGTH_SHORT).show()
             }
 
             override fun onKeyEntered(key: String, location: GeoLocation?) {
+                progressBar.visibility = View.VISIBLE
                 hospitalRef.child(key).addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(p0: DatabaseError) {
-
+                        progressBar.visibility = View.GONE
                     }
 
                     override fun onDataChange(p0: DataSnapshot) {
