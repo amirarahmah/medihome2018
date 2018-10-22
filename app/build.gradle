@@ -42,7 +42,8 @@ dependencies {
     //firebase
     implementation 'com.google.firebase:firebase-core:16.0.4'
     implementation 'com.google.firebase:firebase-database:16.0.3'
-    implementation 'com.google.firebase:firebase-auth:16.0.4'
+    implementation 'com.google.firebase:firebase-auth:16.0.5'
+    implementation 'com.google.firebase:firebase-storage:16.0.3'
     implementation 'com.google.firebase:firebase-storage:16.0.3'
 
     //geofire
@@ -68,6 +69,9 @@ dependencies {
 
     //expandable recyclerview
     implementation 'com.thoughtbot:expandablecheckrecyclerview:1.4'
+
+    //image picker
+    implementation 'com.github.jrvansuita:PickImage:2.2.4'
 
 }
 
