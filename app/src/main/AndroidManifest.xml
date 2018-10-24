@@ -10,7 +10,7 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -74,7 +74,8 @@
         <activity android:name=".ui.booking_kamar.pemesanan.ReviewPemesananActivity" />
         <activity android:name=".ui.booking_kamar.pemesanan.MetodePembayaranActivity" />
         <activity android:name=".ui.booking_kamar.pemesanan.TransferActivity" />
-        <activity android:name=".ui.booking_kamar.profile_rs.DetailKamarActivity"></activity>
+        <activity android:name=".ui.booking_kamar.profile_rs.DetailKamarActivity" />
+        <activity android:name=".ui.booking_kamar.HospitalListActivity"></activity>
     </application>
 
 </manifest>

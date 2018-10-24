@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ui.booking_kamar.CariRumahSakitActivity">
 
     <Button
@@ -14,41 +13,51 @@
         android:background="@color/white"
         android:text="@string/terakhir_dilihat"
         android:textAllCaps="false"
-        android:textSize="16sp"
-        android:textColor="@color/colorPrimary"/>
-    
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp" />
+
     <View
+        android:id="@+id/pembatas"
         android:layout_width="match_parent"
         android:layout_height="8dp"
-        android:background="@color/divider_grey"/>
+        android:layout_below="@id/btn_terakhir_dilihat"
+        android:background="@color/divider_grey" />
 
     <TextView
+        android:id="@+id/cari_berdasarkan_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cari Berdasarkan"
+        android:layout_below="@id/pembatas"
         android:layout_margin="4dp"
-        android:textColor="@color/colorPrimary"/>
-    
+        android:text="Cari Berdasarkan"
+        android:textColor="@color/colorPrimary" />
+
     <android.support.v7.widget.AppCompatSpinner
         android:id="@+id/spinner_cari_berdasarkan"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="8dp"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:layout_below="@id/cari_berdasarkan_tv"
         android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp">
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="8dp">
 
     </android.support.v7.widget.AppCompatSpinner>
 
     <View
+        android:id="@+id/pembatas2"
         android:layout_width="match_parent"
         android:layout_height="8dp"
-        android:background="@color/divider_grey"/>
+        android:layout_below="@+id/spinner_cari_berdasarkan"
+        android:background="@color/divider_grey" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/container_cari_lokasi"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/btn_cari"
+        android:layout_below="@id/pembatas2"
+        android:visibility="visible">
 
         <View
             android:id="@+id/view3"
@@ -203,7 +212,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="Rumah Sakit Sekitar Anda"
+            android:paddingBottom="5dp"
+            android:text="Rumah Sakit sekitar Anda"
             app:layout_constraintStart_toStartOf="@+id/pilih_lokasi_tv"
             app:layout_constraintTop_toBottomOf="@+id/pilih_lokasi_tv" />
 
@@ -215,18 +225,58 @@
             app:layout_constraintStart_toStartOf="@+id/pilih_lokasi_tv"
             app:layout_constraintTop_toBottomOf="@+id/lokasi_rumah_sakit" />
 
-        <Button
-            android:id="@+id/btn_cari"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/cari"
-            android:textColor="@color/white"
-            android:background="@color/colorAccent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
     </android.support.constraint.ConstraintLayout>
 
 
-</LinearLayout>
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/container_cari_namars"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/btn_cari"
+        android:layout_below="@id/pembatas2">
+
+
+        <ImageView
+            android:id="@+id/icon_rumah_sakit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/medihome_hospital_icon" />
+
+        <TextView
+            android:id="@+id/nama_rs_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Nama Rumah Sakit"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/icon_rumah_sakit"
+            app:layout_constraintStart_toEndOf="@+id/icon_rumah_sakit" />
+
+        <EditText
+            android:id="@+id/nama_rumah_sakit"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:inputType="textCapSentences"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/nama_rs_tv"
+            app:layout_constraintTop_toBottomOf="@+id/nama_rs_tv" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btn_cari"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent"
+        android:text="@string/cari"
+        android:textColor="@color/white" />
+
+</RelativeLayout>
