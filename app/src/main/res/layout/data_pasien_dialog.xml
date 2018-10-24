@@ -22,7 +22,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Data Pemesan"
+                android:text="Data Pasien"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
                 android:textColor="@android:color/white" />
 
