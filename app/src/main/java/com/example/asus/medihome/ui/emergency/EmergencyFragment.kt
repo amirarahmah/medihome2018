@@ -84,7 +84,7 @@ class EmergencyFragment : Fragment() {
 
     private fun setupRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(context)
-        mAdapter = EmergencyAdapter(listHospitals)
+        mAdapter = EmergencyAdapter(listHospitals, context!!)
         recyclerView.adapter = mAdapter
     }
 
@@ -183,7 +183,7 @@ class EmergencyFragment : Fragment() {
         Location.distanceBetween(hospital!!.lat, hospital.lng,
                 myLocation!!.latitude, myLocation.longitude, results)
         val jarak = String.format("%.2f", results[0]/1000)
-        return Ambulans(hospital.nama, jarak)
+        return Ambulans(hospital.nama, jarak, hospital.nomorTelpon)
     }
 
 
