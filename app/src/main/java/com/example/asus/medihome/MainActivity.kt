@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.example.asus.medihome.ui.emergency.AmbulansActivity
+import com.example.asus.medihome.ui.emergency.EmergencyFragment
 import com.example.asus.medihome.ui.home.HomeFragment
 import com.example.asus.medihome.ui.info_sehat.InfoSehatFragment
 import com.example.asus.medihome.ui.pesanan.PesananFragment
@@ -37,7 +38,11 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_emergency -> {
-                navigateToAmbulansActivity()
+                supportActionBar?.title = "Ambulans Now"
+//                window.statusBarColor = ContextCompat.getColor(applicationContext, R.color.red)
+//                supportActionBar?.setBackgroundDrawable(ColorDrawable(
+//                        ContextCompat.getColor(this, R.color.red)))
+                updateFragment(EmergencyFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_pesanan -> {
