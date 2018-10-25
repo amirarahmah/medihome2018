@@ -44,11 +44,11 @@ class PesananFragment : Fragment() {
 
         pesananRef.child(userId!!).addValueEventListener(object : ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
-                progressBar.visibility = View.GONE
+                progressBar.visibility = View.INVISIBLE
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                progressBar.visibility = View.GONE
+                progressBar.visibility = View.INVISIBLE
                 pesananList.clear()
                 for(data in p0.children){
                     val pesanan = data.getValue(Pesanan::class.java)

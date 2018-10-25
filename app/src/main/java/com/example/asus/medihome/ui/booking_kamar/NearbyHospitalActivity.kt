@@ -15,7 +15,8 @@ import android.view.View
 import android.widget.Toast
 import com.example.asus.medihome.R
 import com.example.asus.medihome.model.Hospital
-import com.example.asus.medihome.ui.booking_kamar.adapter.HospitalAdapter
+import com.example.asus.medihome.model.HospitalNearby
+import com.example.asus.medihome.ui.booking_kamar.adapter.HospitalNearbyAdapter
 import com.example.asus.medihome.ui.booking_kamar.dialog.SortingDialog
 import com.example.asus.medihome.ui.booking_kamar.profile_rs.ProfilRumahSakitActivity
 import com.firebase.geofire.GeoFire
@@ -40,8 +41,8 @@ class NearbyHospitalActivity : AppCompatActivity() {
     lateinit var geoFire: GeoFire
     lateinit var hospitalRef: DatabaseReference
 
-    var listHospitals: ArrayList<Hospital> = arrayListOf()
-    lateinit var mAdapter: HospitalAdapter
+    var listHospitals: ArrayList<HospitalNearby> = arrayListOf()
+    lateinit var mAdapter: HospitalNearbyAdapter
     lateinit var nama: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,11 +93,11 @@ class NearbyHospitalActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        mAdapter = HospitalAdapter(listHospitals) { hospital: Hospital -> hospitalClicked(hospital) }
+        mAdapter = HospitalNearbyAdapter(listHospitals) { hospital: HospitalNearby -> hospitalClicked(hospital) }
         recyclerView.adapter = mAdapter
     }
 
-    private fun hospitalClicked(hospital: Hospital) {
+    private fun hospitalClicked(hospital: HospitalNearby) {
         val intent = Intent(this, ProfilRumahSakitActivity::class.java)
         intent.putExtra("hospitalId", hospital.hospitalId)
         intent.putExtra("nama", hospital.nama)
@@ -134,8 +135,8 @@ class NearbyHospitalActivity : AppCompatActivity() {
     }
 
 
-    private fun getNearbyHospital(location: Location) {
-        val geoQuery = geoFire.queryAtLocation(GeoLocation(location.latitude, location.longitude), 10.0)
+    private fun getNearbyHospital(myLocation: Location) {
+        val geoQuery = geoFire.queryAtLocation(GeoLocation(myLocation.latitude, myLocation.longitude), 10.0)
         geoQuery.addGeoQueryEventListener(object : GeoQueryEventListener {
             override fun onGeoQueryReady() {
                 progressBar.visibility = View.GONE
@@ -165,6 +166,12 @@ class NearbyHospitalActivity : AppCompatActivity() {
                         progressBar.visibility = View.GONE
                         sort.visibility = View.VISIBLE
                         val hospital = p0.getValue(Hospital::class.java)
+
+                        val results = FloatArray(1)
+                        Location.distanceBetween(hospital!!.lat, hospital.lng,
+                                myLocation!!.latitude, myLocation.longitude, results)
+                        val jarak = String.format("%.2f", results[0] / 1000)
+
                         if (listHospitals.size > 0) {
                             var dataExist = false
                             var dataPosition = -1
@@ -177,13 +184,13 @@ class NearbyHospitalActivity : AppCompatActivity() {
                             }
 
                             if (!dataExist) {
-                                listHospitals.add(hospital!!)
+                                listHospitals.add(convertHospitalNearby(hospital, jarak))
                             } else {
-                                listHospitals[dataPosition] = hospital!!
+                                listHospitals[dataPosition] = convertHospitalNearby(hospital, jarak)
                             }
 
                         } else {
-                            listHospitals.add(hospital!!)
+                            listHospitals.add(convertHospitalNearby(hospital, jarak))
                         }
 
                         mAdapter.notifyDataSetChanged()
@@ -193,7 +200,14 @@ class NearbyHospitalActivity : AppCompatActivity() {
             }
         })
 
+    }
 
+
+    private fun convertHospitalNearby(hospital: Hospital, jarak : String) : HospitalNearby{
+        return HospitalNearby(hospital.hospitalId,
+                hospital.nama, hospital.nomorTelpon, hospital.kota,
+                hospital.alamat, hospital.alamatFull, hospital.photo,
+                jarak, hospital.lat, hospital.lng)
     }
 
 

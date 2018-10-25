@@ -4,11 +4,21 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
+import android.view.View
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.asus.medihome.MainActivity
 import com.example.asus.medihome.R
+import com.example.asus.medihome.model.User
+import com.example.asus.medihome.model.UserProfile
+import com.example.asus.medihome.util.PreferenceHelper
+import com.example.asus.medihome.util.PreferenceHelper.set
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.lmntrx.android.library.livin.missme.ProgressDialog
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -51,9 +61,8 @@ class LoginActivity : AppCompatActivity() {
                     .addOnCompleteListener { task ->
                         progressDialog.dismiss()
                         if (task.isSuccessful) {
-                            val intent = Intent(this, MainActivity::class.java)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                            startActivity(intent)
+
+                            getDataUser()
                         } else {
                             val errorCode = (task.exception as FirebaseAuthException).errorCode
 
@@ -81,6 +90,36 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Mohon masukan password", Toast.LENGTH_SHORT).show()
         }
 
+    }
+
+    private fun getDataUser() {
+        val userRef = FirebaseDatabase.getInstance().reference.child("users")
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+
+        userRef.child(userId!!).addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val user = p0.getValue(User::class.java)
+
+                val nama = user?.nama
+                val email = user?.email
+                val nomorTelpon = user?.nomorTelpon
+
+                val prefs = PreferenceHelper.defaultPrefs(this@LoginActivity)
+
+                prefs["nama"] = nama
+                prefs["email"] = email
+                prefs["noTelp"] = nomorTelpon
+
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
+
+            }
+        })
     }
 
 
