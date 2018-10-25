@@ -135,7 +135,7 @@ class NearbyHospitalActivity : AppCompatActivity() {
 
 
     private fun getNearbyHospital(location: Location) {
-        val geoQuery = geoFire.queryAtLocation(GeoLocation(location.latitude, location.longitude), 50.0)
+        val geoQuery = geoFire.queryAtLocation(GeoLocation(location.latitude, location.longitude), 10.0)
         geoQuery.addGeoQueryEventListener(object : GeoQueryEventListener {
             override fun onGeoQueryReady() {
                 progressBar.visibility = View.GONE

@@ -93,15 +93,21 @@
                     android:text="Tanggal Lahir"
                     android:textSize="16sp" />
 
-                <EditText
-                    android:id="@+id/tanggal_lahir_et"
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:id="@+id/tanggal_lahir_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:inputType="text"
-                    android:textColor="@color/primaryBlack"
-                    app:theme="@style/ediTextStyle"
-                    tools:text="20 oktober" />
+                    tools:text="16 Oktober 1998"
+                    android:layout_marginLeft="2dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/primaryBlack"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#B0B0B0"/>
 
                 <TextView
                     android:layout_width="match_parent"

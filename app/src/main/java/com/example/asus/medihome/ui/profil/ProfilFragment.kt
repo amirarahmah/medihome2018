@@ -1,6 +1,7 @@
 package com.example.asus.medihome.ui.profil
 
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -16,6 +17,7 @@ import com.example.asus.medihome.R
 import com.example.asus.medihome.model.User
 import com.example.asus.medihome.model.UserProfile
 import com.example.asus.medihome.ui.authentification.LoginActivity
+import com.example.asus.medihome.util.DateConverter.getBulanName
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -30,16 +32,20 @@ import com.vansuita.pickimage.bundle.PickSetup
 import com.vansuita.pickimage.dialog.PickImageDialog
 import com.vansuita.pickimage.enums.EPickType
 import kotlinx.android.synthetic.main.fragment_profil.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class ProfilFragment : Fragment() {
 
     var imageUri: Uri? = null
     var photoUrl : String = ""
+    var tanggalLahir : String = ""
     private var profilChanged = false
 
     lateinit var alertDialog: AlertDialog
-
+    private var datePickerDialog: DatePickerDialog? = null
+    private var dateFormatter: SimpleDateFormat? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -63,14 +69,22 @@ class ProfilFragment : Fragment() {
                 .setPickTypes(EPickType.GALLERY, EPickType.CAMERA)
 
         image_profile.setOnClickListener {
-            PickImageDialog.build(setup)
-                    .setOnPickResult { pickResult ->
-                        val imageBitmap = pickResult.bitmap
-                        imageUri = pickResult.uri
-                        image_profile.setImageBitmap(imageBitmap)
-                    }
-                    .setOnPickCancel { }
-                    .show(fragmentManager)
+            if(profilChanged){
+                PickImageDialog.build(setup)
+                        .setOnPickResult { pickResult ->
+                            val imageBitmap = pickResult.bitmap
+                            imageUri = pickResult.uri
+                            image_profile.setImageBitmap(imageBitmap)
+                        }
+                        .setOnPickCancel { }
+                        .show(fragmentManager)
+            }
+        }
+
+        tanggal_lahir_tv.setOnClickListener {
+            if(profilChanged){
+                showDateDialog()
+            }
         }
 
         val userRef = FirebaseDatabase.getInstance().reference.child("users")
@@ -96,7 +110,7 @@ class ProfilFragment : Fragment() {
 
                 nama_lengkap_et.setText(nama)
                 email_et.setText(email)
-                tanggal_lahir_et.setText(tanggalLahir)
+                tanggal_lahir_tv.text = tanggalLahir
                 alamat_et.setText(alamat)
                 jenis_kelamin_et.setText(jenisKelamin)
                 nomor_telepon_et.setText(nomorTelpon)
@@ -117,7 +131,7 @@ class ProfilFragment : Fragment() {
                 ubahBtn.text = "Simpan"
                 nama_lengkap_et.isEnabled = true
                 email_et.isEnabled = true
-                tanggal_lahir_et.isEnabled = true
+                tanggal_lahir_tv.isEnabled = true
                 alamat_et.isEnabled = true
                 jenis_kelamin_et.isEnabled = true
                 nomor_telepon_et.isEnabled = true
@@ -133,6 +147,39 @@ class ProfilFragment : Fragment() {
 
     }
 
+
+    private fun showDateDialog() {
+
+        val newCalendar = Calendar.getInstance()
+        datePickerDialog = DatePickerDialog(context, DatePickerDialog.OnDateSetListener {
+            view, year, monthOfYear, dayOfMonth ->
+
+            val newDate = Calendar.getInstance()
+            newDate.set(year, monthOfYear, dayOfMonth)
+
+            dateFormatter = SimpleDateFormat("dd-MM-yyyy", Locale.US)
+
+            tanggalLahir = dateFormatter!!.format(newDate.getTime())
+
+            val parts = tanggalLahir.split("-")
+
+            val tanggal = parts[0]
+            val bulan = parts[1]
+            val tahun = parts[2]
+
+             val dateToDisplay = tanggal + " " + getBulanName(bulan) + " " + tahun
+
+            tanggal_lahir_tv.text = dateToDisplay
+
+        },
+                newCalendar.get(Calendar.YEAR),
+                newCalendar.get(Calendar.MONTH),
+                newCalendar.get(Calendar.DAY_OF_MONTH))
+
+        datePickerDialog!!.show()
+    }
+
+
     private fun saveProfile() {
         showProgressDialog()
         if (imageUri != null) {
@@ -145,7 +192,7 @@ class ProfilFragment : Fragment() {
     private fun sendUserProfileToFirebase() {
         val nama = nama_lengkap_et.text.toString().trim()
         val email = email_et.text.toString().trim()
-        val tanggalLahir = tanggal_lahir_et.text.toString().trim()
+        val tanggalLahir = tanggal_lahir_tv.text.toString().trim()
         val alamat = alamat_et.text.toString().trim()
         val jenisKelamin = jenis_kelamin_et.text.toString().trim()
         val nomorTelepon = nomor_telepon_et.text.toString().trim()
@@ -169,7 +216,7 @@ class ProfilFragment : Fragment() {
 
         nama_lengkap_et.isEnabled = false
         email_et.isEnabled = false
-        tanggal_lahir_et.isEnabled = false
+        tanggal_lahir_tv.isEnabled = false
         alamat_et.isEnabled = false
         jenis_kelamin_et.isEnabled = false
         nomor_telepon_et.isEnabled = false
