@@ -22,13 +22,13 @@ class DummyActivity : AppCompatActivity() {
 
         val hospitalId = hospitalRef.push().key
         val hospital = Hospital(hospitalId!!, "RS Islam Siti Hajar",
-                "0318921233",
+                "0318921233", "",
                 "Jasem, Bulusidokare, Sidoarjo", "", "",
                 -7.457630, 112.722055)
 
         val hospitalId2 = hospitalRef.push().key
         val hospital2 = Hospital(hospitalId2!!, "RS Delta Surya",
-                "0318962531",
+                "0318962531", "",
                 "Jati, Sidoarjo", "", "",
                 -7.447080, 112.701572)
 

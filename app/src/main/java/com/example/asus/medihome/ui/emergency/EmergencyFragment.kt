@@ -1,4 +1,5 @@
-package com.example.asus.medihome.ui.booking_kamar
+package com.example.asus.medihome.ui.emergency
+
 
 import android.Manifest
 import android.app.Activity
@@ -8,16 +9,18 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.view.MenuItem
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
+
 import com.example.asus.medihome.R
+import com.example.asus.medihome.model.Ambulans
 import com.example.asus.medihome.model.Hospital
-import com.example.asus.medihome.ui.booking_kamar.adapter.HospitalAdapter
-import com.example.asus.medihome.ui.booking_kamar.dialog.SortingDialog
-import com.example.asus.medihome.ui.booking_kamar.profile_rs.ProfilRumahSakitActivity
+import com.example.asus.medihome.ui.emergency.adapter.EmergencyAdapter
 import com.firebase.geofire.GeoFire
 import com.firebase.geofire.GeoLocation
 import com.firebase.geofire.GeoQueryEventListener
@@ -25,13 +28,13 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_nearby_hospital.*
+import kotlinx.android.synthetic.main.fragment_ambulans.*
 
-class NearbyHospitalActivity : AppCompatActivity() {
+
+class EmergencyFragment : Fragment() {
 
     val REQUEST_LOCATION = 900
     val REQUEST_CHECK_SETTINGS = 100
-
 
     private lateinit var mLocationCallback: LocationCallback
     private lateinit var mLocationRequest: LocationRequest
@@ -40,17 +43,18 @@ class NearbyHospitalActivity : AppCompatActivity() {
     lateinit var geoFire: GeoFire
     lateinit var hospitalRef: DatabaseReference
 
-    var listHospitals: ArrayList<Hospital> = arrayListOf()
-    lateinit var mAdapter: HospitalAdapter
+    var listHospitals: ArrayList<Ambulans> = arrayListOf()
+    lateinit var mAdapter: EmergencyAdapter
     lateinit var nama: String
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_nearby_hospital)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_ambulans, container, false)
+    }
 
-        supportActionBar?.title = "Rumah Sakit di Sekitar Anda"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         mLocationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult?) {
                 if (locationResult == null) {
@@ -61,24 +65,13 @@ class NearbyHospitalActivity : AppCompatActivity() {
             }
         }
 
-        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context!!)
 
-        sort.visibility = View.GONE
 
         setupFirebase()
         setupRecyclerView()
         checkLocationSetting()
 
-        sort.setOnClickListener {
-            showSortingDialog()
-        }
-
-    }
-
-    private fun showSortingDialog() {
-        val sortingDialog = SortingDialog.newInstance()
-        val fragmentManager = supportFragmentManager
-        sortingDialog.show(fragmentManager, "sorting_fragment")
     }
 
 
@@ -90,37 +83,24 @@ class NearbyHospitalActivity : AppCompatActivity() {
 
 
     private fun setupRecyclerView() {
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        mAdapter = HospitalAdapter(listHospitals) { hospital: Hospital -> hospitalClicked(hospital) }
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        mAdapter = EmergencyAdapter(listHospitals, context!!)
         recyclerView.adapter = mAdapter
-    }
-
-    private fun hospitalClicked(hospital: Hospital) {
-        val intent = Intent(this, ProfilRumahSakitActivity::class.java)
-        intent.putExtra("hospitalId", hospital.hospitalId)
-        intent.putExtra("nama", hospital.nama)
-        intent.putExtra("nomorTelpon", hospital.nomorTelpon)
-        intent.putExtra("alamat", hospital.alamat)
-        intent.putExtra("alamatFull", hospital.alamatFull)
-        intent.putExtra("lat", hospital.lat)
-        intent.putExtra("lng", hospital.lng)
-        intent.putExtra("photo", hospital.photo)
-        startActivity(intent)
     }
 
 
     private fun getDeviceLocation() {
-        if (ActivityCompat.checkSelfPermission(this,
+        if (ActivityCompat.checkSelfPermission(context!!,
                         Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // Check Permissions Now
-            ActivityCompat.requestPermissions(this,
+            ActivityCompat.requestPermissions(context as AppCompatActivity,
                     arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                     REQUEST_LOCATION)
         } else {
             progressBar.visibility = View.VISIBLE
             //permission granted
             mFusedLocationProviderClient.lastLocation
-                    .addOnSuccessListener(this) { location ->
+                    .addOnSuccessListener(context as AppCompatActivity) { location ->
                         // Got last known location. In some rare situations this can be null.
                         if (location != null) {
                             getNearbyHospital(location)
@@ -133,8 +113,8 @@ class NearbyHospitalActivity : AppCompatActivity() {
     }
 
 
-    private fun getNearbyHospital(location: Location) {
-        val geoQuery = geoFire.queryAtLocation(GeoLocation(location.latitude, location.longitude), 50.0)
+    private fun getNearbyHospital(myLocation: Location) {
+        val geoQuery = geoFire.queryAtLocation(GeoLocation(myLocation.latitude, myLocation.longitude), 50.0)
         geoQuery.addGeoQueryEventListener(object : GeoQueryEventListener {
             override fun onGeoQueryReady() {
                 progressBar.visibility = View.GONE
@@ -150,7 +130,7 @@ class NearbyHospitalActivity : AppCompatActivity() {
 
             override fun onGeoQueryError(error: DatabaseError) {
                 progressBar.visibility = View.GONE
-                Toast.makeText(this@NearbyHospitalActivity, error.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
             }
 
             override fun onKeyEntered(key: String, location: GeoLocation?) {
@@ -175,14 +155,17 @@ class NearbyHospitalActivity : AppCompatActivity() {
                                 }
                             }
 
+                            val emergency = convertHospital(hospital, myLocation)
+
                             if (!dataExist) {
-                                listHospitals.add(hospital!!)
+                                listHospitals.add(emergency)
                             } else {
-                                listHospitals[dataPosition] = hospital!!
+                                listHospitals[dataPosition] = emergency
                             }
 
                         } else {
-                            listHospitals.add(hospital!!)
+                            val emergency = convertHospital(hospital, myLocation)
+                            listHospitals.add(emergency)
                         }
 
                         mAdapter.notifyDataSetChanged()
@@ -193,6 +176,14 @@ class NearbyHospitalActivity : AppCompatActivity() {
         })
 
 
+    }
+
+    private fun convertHospital(hospital: Hospital?, myLocation: Location?): Ambulans {
+        val results = FloatArray(1)
+        Location.distanceBetween(hospital!!.lat, hospital.lng,
+                myLocation!!.latitude, myLocation.longitude, results)
+        val jarak = String.format("%.2f", results[0]/1000)
+        return Ambulans(hospital.nama, jarak, hospital.nomorTelpon)
     }
 
 
@@ -206,7 +197,7 @@ class NearbyHospitalActivity : AppCompatActivity() {
         builder.setAlwaysShow(true)
 
 
-        val task = LocationServices.getSettingsClient(this).checkLocationSettings(builder.build())
+        val task = LocationServices.getSettingsClient(context!!).checkLocationSettings(builder.build())
 
         task.addOnCompleteListener { task ->
             try {
@@ -225,7 +216,7 @@ class NearbyHospitalActivity : AppCompatActivity() {
                             // Show the dialog by calling startResolutionForResult(),
                             // and check the result in onActivityResult().
                             resolvable.startResolutionForResult(
-                                    this,
+                                    context as AppCompatActivity,
                                     REQUEST_CHECK_SETTINGS)
                         } catch (e: IntentSender.SendIntentException) {
                             // Ignore the error.
@@ -286,14 +277,5 @@ class NearbyHospitalActivity : AppCompatActivity() {
     }
 
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
-                return true
-            }
-        }
-        return false
-    }
 
 }
