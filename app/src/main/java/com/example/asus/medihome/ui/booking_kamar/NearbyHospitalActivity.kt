@@ -58,6 +58,7 @@ class NearbyHospitalActivity : AppCompatActivity() {
                 }
                 val location = locationResult.lastLocation
                 getNearbyHospital(location)
+                mFusedLocationProviderClient.removeLocationUpdates(mLocationCallback)
             }
         }
 

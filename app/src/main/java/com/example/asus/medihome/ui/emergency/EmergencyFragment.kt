@@ -3,10 +3,13 @@ package com.example.asus.medihome.ui.emergency
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Location
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
@@ -16,7 +19,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-
+import com.example.asus.medihome.MainActivity
 import com.example.asus.medihome.R
 import com.example.asus.medihome.model.Ambulans
 import com.example.asus.medihome.model.Hospital
@@ -29,11 +32,13 @@ import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_ambulans.*
+import java.lang.Exception
 
 
 class EmergencyFragment : Fragment() {
 
     val REQUEST_LOCATION = 900
+    val CALL_REQUEST = 800
     val REQUEST_CHECK_SETTINGS = 100
 
     private lateinit var mLocationCallback: LocationCallback
@@ -62,6 +67,7 @@ class EmergencyFragment : Fragment() {
                 }
                 val location = locationResult.lastLocation
                 getNearbyHospital(location)
+                mFusedLocationProviderClient.removeLocationUpdates(mLocationCallback)
             }
         }
 
@@ -84,8 +90,44 @@ class EmergencyFragment : Fragment() {
 
     private fun setupRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(context)
-        mAdapter = EmergencyAdapter(listHospitals, context!!)
+        mAdapter = EmergencyAdapter(listHospitals, context!!){showAlertDialog()}
         recyclerView.adapter = mAdapter
+    }
+
+
+    private fun showAlertDialog() {
+        val alertBuilder = AlertDialog.Builder(context)
+        alertBuilder.setTitle("")
+                .setMessage("Apakah Anda yakin ingin memanggil Ambulans?")
+                .setPositiveButton("Ya") { dialog, which ->
+                    makePhoneCall()
+                }
+                .setNegativeButton("Batal") { dialog, which ->
+                    dialog.dismiss()
+                }
+
+        val alertDialog = alertBuilder.create()
+        alertDialog.show()
+    }
+
+    private fun makePhoneCall() {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (ActivityCompat.checkSelfPermission(context!!, Manifest.permission.CALL_PHONE)
+                        != PackageManager.PERMISSION_GRANTED) {
+
+                    requestPermissions(arrayOf(Manifest.permission.CALL_PHONE), CALL_REQUEST)
+                    return
+
+                }
+            }
+
+            val callIntent = Intent(Intent.ACTION_CALL)
+            callIntent.data = Uri.parse("tel:" + 811111111)
+            startActivity(callIntent)
+        } catch (ex : Exception) {
+            ex.printStackTrace()
+        }
     }
 
 
@@ -182,7 +224,7 @@ class EmergencyFragment : Fragment() {
         val results = FloatArray(1)
         Location.distanceBetween(hospital!!.lat, hospital.lng,
                 myLocation!!.latitude, myLocation.longitude, results)
-        val jarak = String.format("%.2f", results[0]/1000)
+        val jarak = String.format("%.2f", results[0] / 1000)
         return Ambulans(hospital.nama, jarak, hospital.nomorTelpon)
     }
 
@@ -267,6 +309,16 @@ class EmergencyFragment : Fragment() {
             } else {
                 // Permission was denied or request was cancelled
             }
+        }else if(requestCode == CALL_REQUEST)
+        {
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
+                //permission call granted
+                makePhoneCall()
+            }
+            else {
+                //permission call denied or request was cancelled
+            }
         }
     }
 
@@ -275,7 +327,6 @@ class EmergencyFragment : Fragment() {
         super.onPause()
         mFusedLocationProviderClient.removeLocationUpdates(mLocationCallback)
     }
-
 
 
 }

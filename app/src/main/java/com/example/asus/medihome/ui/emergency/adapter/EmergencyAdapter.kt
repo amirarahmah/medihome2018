@@ -9,12 +9,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import com.example.asus.medihome.R
+import com.example.asus.medihome.R.drawable.hospital
 import com.example.asus.medihome.model.Ambulans
-import android.content.Intent
-import android.net.Uri
+import com.example.asus.medihome.model.Hospital
 
-
-class EmergencyAdapter(var listHospital : ArrayList<Ambulans>,var mContext : Context)
+class EmergencyAdapter(var listHospital : ArrayList<Ambulans>, var mContext : Context,
+                       val clickListener: (Ambulans) -> Unit)
     : RecyclerView.Adapter<EmergencyAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): MyViewHolder {
@@ -32,11 +32,7 @@ class EmergencyAdapter(var listHospital : ArrayList<Ambulans>,var mContext : Con
         holder.namaRsTv.text = hospital.namaRs
         holder.jarakRsTv.text = "${hospital.jarak} Km"
 
-        holder.callButton.setOnClickListener {
-            val phoneNumber = hospital.phone
-            val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null))
-            mContext.startActivity(intent)
-        }
+        holder.bind(listHospital[position], clickListener)
     }
 
 
@@ -45,6 +41,14 @@ class EmergencyAdapter(var listHospital : ArrayList<Ambulans>,var mContext : Con
         var namaRsTv = itemView.findViewById<TextView>(R.id.nama_rs_tv)
         val jarakRsTv = itemView.findViewById<TextView>(R.id.jarak_rs_tv)
         val callButton = itemView.findViewById<Button>(R.id.button_panggil)
+
+        fun bind(ambulans: Ambulans,
+                 clickListener: (Ambulans) -> Unit) {
+
+            callButton.setOnClickListener { clickListener(ambulans) }
+
+        }
+
     }
 
 }

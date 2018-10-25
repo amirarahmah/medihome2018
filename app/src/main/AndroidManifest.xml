@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:allowBackup="true"
@@ -71,7 +72,6 @@
         <activity
             android:name=".ui.booking_kamar.profile_rs.ProfilRumahSakitActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.emergency.AmbulansActivity" />
         <activity android:name=".ui.booking_kamar.pemesanan.IsiDataActivity" />
         <activity android:name=".ui.booking_kamar.pemesanan.ReviewPemesananActivity" />
         <activity android:name=".ui.booking_kamar.pemesanan.MetodePembayaranActivity" />
