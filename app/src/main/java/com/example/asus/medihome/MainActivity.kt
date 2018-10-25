@@ -2,9 +2,11 @@ package com.example.asus.medihome
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import com.example.asus.medihome.extension.toast
 import com.example.asus.medihome.ui.emergency.AmbulansActivity
 import com.example.asus.medihome.ui.home.HomeFragment
 import com.example.asus.medihome.ui.info_sehat.InfoSehatFragment
@@ -66,6 +68,17 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
                 .replace(R.id.main_frame, fragment)
                 .commit()
+    }
+
+    private var exit: Boolean? = false
+    override fun onBackPressed() {
+        if (exit!!) {
+            finishAffinity() // finish all parent activities
+        } else {
+            toast("Press Back again to Exit")
+            exit = true
+            Handler().postDelayed({ exit = false }, (3 * 1000).toLong())
+        }
     }
 
 }

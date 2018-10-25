@@ -26,6 +26,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:support-media-compat:28.0.0'
     implementation 'com.android.support:support-v4:28.0.0'
@@ -69,6 +70,11 @@ dependencies {
     //expandable recyclerview
     implementation 'com.thoughtbot:expandablecheckrecyclerview:1.4'
 
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //material chip view
+    implementation 'com.robertlevonyan.view:MaterialChipView:1.2.4'
 }
 
 apply plugin: 'com.google.gms.google-services'

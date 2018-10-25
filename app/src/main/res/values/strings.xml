@@ -43,4 +43,6 @@
     <string name="harga_per_malam">Harga Per Malam</string>
     <string name="deskripsi_kamar">Deskripsi Kamar</string>
     <string name="pesan">Pesan</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
 </resources>

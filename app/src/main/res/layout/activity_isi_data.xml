@@ -66,7 +66,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="6dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageView"
+                        app:layout_constraintTop_toBottomOf="@+id/imageview_thumbnail"
                         app:srcCompat="@drawable/medihome_room_icon" />
 
                     <TextView
@@ -74,8 +74,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
-                        app:layout_constraintStart_toEndOf="@+id/imageView"
-                        app:layout_constraintTop_toTopOf="@+id/imageView"
+                        app:layout_constraintStart_toEndOf="@+id/imageview_thumbnail"
+                        app:layout_constraintTop_toTopOf="@+id/imageview_thumbnail"
                         tools:text="Nama Rumah Sakit" />
 
                     <TextView
@@ -121,7 +121,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/tanggal_pesan" />
 
                     <ImageView
-                        android:id="@+id/imageView"
+                        android:id="@+id/imageview_thumbnail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
