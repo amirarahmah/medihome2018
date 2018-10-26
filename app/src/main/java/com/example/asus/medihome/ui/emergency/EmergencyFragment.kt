@@ -19,7 +19,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.example.asus.medihome.MainActivity
 import com.example.asus.medihome.R
 import com.example.asus.medihome.model.Ambulans
 import com.example.asus.medihome.model.Hospital
@@ -32,7 +31,6 @@ import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_ambulans.*
-import java.lang.Exception
 
 
 class EmergencyFragment : Fragment() {
@@ -90,7 +88,7 @@ class EmergencyFragment : Fragment() {
 
     private fun setupRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(context)
-        mAdapter = EmergencyAdapter(listHospitals, context!!){showAlertDialog()}
+        mAdapter = EmergencyAdapter(listHospitals, context!!) { showAlertDialog() }
         recyclerView.adapter = mAdapter
     }
 
@@ -125,7 +123,7 @@ class EmergencyFragment : Fragment() {
             val callIntent = Intent(Intent.ACTION_CALL)
             callIntent.data = Uri.parse("tel:" + 811111111)
             startActivity(callIntent)
-        } catch (ex : Exception) {
+        } catch (ex: Exception) {
             ex.printStackTrace()
         }
     }
@@ -139,7 +137,7 @@ class EmergencyFragment : Fragment() {
                     arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                     REQUEST_LOCATION)
         } else {
-            progressBar.visibility = View.VISIBLE
+            progressBar?.let { it.visibility = View.VISIBLE }
             //permission granted
             mFusedLocationProviderClient.lastLocation
                     .addOnSuccessListener(context as AppCompatActivity) { location ->
@@ -159,32 +157,32 @@ class EmergencyFragment : Fragment() {
         val geoQuery = geoFire.queryAtLocation(GeoLocation(myLocation.latitude, myLocation.longitude), 50.0)
         geoQuery.addGeoQueryEventListener(object : GeoQueryEventListener {
             override fun onGeoQueryReady() {
-                progressBar.visibility = View.GONE
+                progressBar?.let { it.visibility = View.INVISIBLE }
             }
 
             override fun onKeyMoved(key: String?, location: GeoLocation?) {
-                progressBar.visibility = View.GONE
+                progressBar?.let { it.visibility = View.INVISIBLE }
             }
 
             override fun onKeyExited(key: String?) {
-                progressBar.visibility = View.GONE
+                progressBar?.let { it.visibility = View.INVISIBLE }
             }
 
             override fun onGeoQueryError(error: DatabaseError) {
-                progressBar.visibility = View.GONE
+                progressBar?.let { it.visibility = View.INVISIBLE }
                 Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
             }
 
             override fun onKeyEntered(key: String, location: GeoLocation?) {
-                progressBar.visibility = View.VISIBLE
+                progressBar?.let { it.visibility = View.VISIBLE }
                 hospitalRef.child(key).addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(p0: DatabaseError) {
-                        progressBar.visibility = View.GONE
+                        progressBar?.let { it.visibility = View.INVISIBLE }
                     }
 
                     override fun onDataChange(p0: DataSnapshot) {
-                        progressBar.visibility = View.GONE
-                        sort.visibility = View.VISIBLE
+                        progressBar?.let { it.visibility = View.INVISIBLE }
+                        sort?.let { it.visibility = View.VISIBLE }
                         val hospital = p0.getValue(Hospital::class.java)
                         if (listHospitals.size > 0) {
                             var dataExist = false
@@ -309,14 +307,11 @@ class EmergencyFragment : Fragment() {
             } else {
                 // Permission was denied or request was cancelled
             }
-        }else if(requestCode == CALL_REQUEST)
-        {
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
-            {
+        } else if (requestCode == CALL_REQUEST) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 //permission call granted
                 makePhoneCall()
-            }
-            else {
+            } else {
                 //permission call denied or request was cancelled
             }
         }

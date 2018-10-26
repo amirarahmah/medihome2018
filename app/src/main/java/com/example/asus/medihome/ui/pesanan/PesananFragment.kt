@@ -37,18 +37,18 @@ class PesananFragment : Fragment() {
         pesananList = arrayListOf()
 
         setupRecyclerView()
-        progressBar.visibility = View.VISIBLE
+        progressBar?.let { it.visibility = View.VISIBLE }
 
         val pesananRef = FirebaseDatabase.getInstance().reference.child("pesanan")
         val userId = FirebaseAuth.getInstance().currentUser?.uid
 
         pesananRef.child(userId!!).addValueEventListener(object : ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
-                progressBar.visibility = View.INVISIBLE
+                progressBar?.let { it.visibility = View.INVISIBLE }
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                progressBar.visibility = View.INVISIBLE
+                progressBar?.let { it.visibility = View.INVISIBLE }
                 pesananList.clear()
                 for(data in p0.children){
                     val pesanan = data.getValue(Pesanan::class.java)

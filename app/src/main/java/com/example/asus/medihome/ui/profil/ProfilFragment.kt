@@ -56,7 +56,7 @@ class ProfilFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        profile_container.visibility = View.GONE
+        profile_container?.let{it.visibility = View.GONE}
 
         keluarBtn.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
@@ -96,8 +96,8 @@ class ProfilFragment : Fragment() {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                progressBar.visibility = View.GONE
-                profile_container.visibility = View.VISIBLE
+                progressBar?.let { it.visibility = View.INVISIBLE }
+                profile_container?.let{it.visibility = View.VISIBLE}
                 val user = p0.getValue(UserProfile::class.java)
                 val nama = user?.nama
                 val email = user?.email
