@@ -47,4 +47,9 @@
     <string name="pesan">Pesan</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
+    <string name="pilih_layanan">Pilih Layanan</string>
+    <string name="layanan">Layanan</string>
+    <string name="jadwal_praktik">Jadwal Praktik</string>
+    <string name="lihat_detail">Lihat Detail</string>
+    <string name="pilih_jadwal">Pilih Jadwal</string>
 </resources>

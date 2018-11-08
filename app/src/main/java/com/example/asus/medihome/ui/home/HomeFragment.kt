@@ -11,6 +11,7 @@ import com.example.asus.medihome.MainActivity
 
 import com.example.asus.medihome.R
 import com.example.asus.medihome.ui.booking_kamar.CariRumahSakitActivity
+import com.example.asus.medihome.ui.mediclinic.MediClinicActivity
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
@@ -34,6 +35,11 @@ class HomeFragment : Fragment() {
 
         menu_booking_kamar.setOnClickListener {
             val intent = Intent(context, CariRumahSakitActivity::class.java)
+            startActivity(intent)
+        }
+
+        menu_klinik_spesialis.setOnClickListener {
+            val intent = Intent(context, MediClinicActivity::class.java)
             startActivity(intent)
         }
 

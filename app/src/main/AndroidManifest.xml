@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -50,8 +50,8 @@
 
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,41 +60,61 @@
         </activity>
         <activity
             android:name=".ui.authentification.RegisterActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.authentification.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.booking_kamar.CariRumahSakitActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".DummyActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.booking_kamar.NearbyHospitalActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.booking_kamar.CariRumahSakitActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DummyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.booking_kamar.NearbyHospitalActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.booking_kamar.profile_rs.ProfilRumahSakitActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.booking_kamar.pemesanan.IsiDataActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.booking_kamar.pemesanan.ReviewPemesananActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.booking_kamar.pemesanan.MetodePembayaranActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.booking_kamar.pemesanan.TransferActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.booking_kamar.HospitalListActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.booking_kamar.profile_rs.DetailKamarActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.booking_kamar.pemesanan.IsiDataActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.booking_kamar.pemesanan.ReviewPemesananActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.booking_kamar.pemesanan.MetodePembayaranActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.booking_kamar.pemesanan.TransferActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.booking_kamar.HospitalListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.booking_kamar.profile_rs.DetailKamarActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.info_sehat_detail.InfoSehatDetailActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mediclinic.MediClinicActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity android:name=".ui.mediclinic.ListClinicActivity" />
+        <activity
+            android:name=".ui.mediclinic.profile.ProfileClinicActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.mediclinic.reservasi.ReservasiActivity"></activity>
     </application>
 
 </manifest>

@@ -32,7 +32,7 @@ class CariLokasiDialog : DialogFragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mListLokasi = arrayListOf("Malang", "Sidoarjo", "Tegal")
+        mListLokasi = arrayListOf("Malang", "Sidoarjo", "Tegal", "Bali")
         mAdapter = LokasiAdapter(mListLokasi) { lokasi -> onLokasiClicked(lokasi)}
         lokasi_recyclerView.layoutManager = LinearLayoutManager(context)
         lokasi_recyclerView.adapter = mAdapter
