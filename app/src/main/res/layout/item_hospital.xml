@@ -1,115 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_hospital"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_marginLeft="12dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginRight="12dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/item_hospital"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginTop="8dp">
+        android:layout_height="wrap_content">
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/hospital_image"
+            android:layout_width="140dp"
+            android:layout_height="0dp"
+            android:maxHeight="200dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/medihome_stethoscope_logo" />
 
-            <ImageView
-                android:id="@+id/hospital_image"
-                android:layout_width="140dp"
-                android:layout_height="0dp"
-                android:maxHeight="200dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/medihome_stethoscope_logo" />
+        <TextView
+            android:id="@+id/hospital_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/hospital_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Rumah Sakit UB" />
 
-            <TextView
-                android:id="@+id/hospital_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/hospital_image"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Rumah Sakit UB" />
+        <TextView
+            android:id="@+id/hospital_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hospital_name"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/oval_background"
+            android:paddingLeft="8dp"
+            android:paddingTop="3dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="3dp"
+            android:text="Tipe B"
+            android:textColor="#fff"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="@+id/hospital_name"
+            app:layout_constraintTop_toBottomOf="@+id/hospital_name" />
 
-            <TextView
-                android:id="@+id/hospital_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/hospital_name"
-                android:layout_marginTop="2dp"
-                android:background="@drawable/oval_background"
-                android:paddingLeft="8dp"
-                android:paddingTop="3dp"
-                android:paddingRight="8dp"
-                android:paddingBottom="3dp"
-                android:text="Tipe B"
-                android:textColor="#fff"
-                android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/hospital_name"
-                app:layout_constraintTop_toBottomOf="@+id/hospital_name" />
+        <TextView
+            android:id="@+id/hospital_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hospital_type"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/hospital_name"
+            app:layout_constraintTop_toBottomOf="@+id/hospital_type"
+            tools:text="Lowokwaru, Malang" />
 
-            <TextView
-                android:id="@+id/hospital_location"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/hospital_type"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/hospital_name"
-                app:layout_constraintTop_toBottomOf="@+id/hospital_type"
-                tools:text="Lowokwaru, Malang" />
+        <TextView
+            android:id="@+id/harga_mulai_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_below="@+id/hospital_location"
+            android:layout_marginTop="8dp"
+            android:text="Harga Mulai"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/hospital_name"
+            app:layout_constraintTop_toBottomOf="@+id/hospital_location" />
 
-            <TextView
-                android:id="@+id/harga_mulai_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_below="@+id/hospital_location"
-                android:layout_marginTop="8dp"
-                android:text="Harga Mulai"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/hospital_name"
-                app:layout_constraintTop_toBottomOf="@+id/hospital_location" />
+        <TextView
+            android:id="@+id/hospital_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/harga_mulai_tv"
+            android:layout_marginBottom="8dp"
+            android:text="Rp 500.000"
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/harga_mulai_tv"
+            app:layout_constraintTop_toBottomOf="@+id/harga_mulai_tv" />
 
-            <TextView
-                android:id="@+id/hospital_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/harga_mulai_tv"
-                android:layout_marginBottom="8dp"
-                android:text="Rp 500.000"
-                android:textColor="@color/colorAccent"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/harga_mulai_tv"
-                app:layout_constraintTop_toBottomOf="@+id/harga_mulai_tv" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/harga_mulai_tv"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:text="/kamar/malam"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/hospital_price"
+            app:layout_constraintTop_toTopOf="@+id/hospital_price" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/harga_mulai_tv"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="2dp"
-                android:text="/kamar/malam"
-                android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@+id/hospital_price"
-                app:layout_constraintTop_toTopOf="@+id/hospital_price" />
+    </android.support.constraint.ConstraintLayout>
 
-        </android.support.constraint.ConstraintLayout>
-
-    </android.support.v7.widget.CardView>
-
-
-</RelativeLayout>
+</android.support.v7.widget.CardView>

@@ -157,7 +157,7 @@
             tools:context=".MapsActivity" />
 
         <TextView
-            android:id="@+id/alamat_hospital"
+            android:id="@+id/alamat_klinik"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -168,7 +168,7 @@
             tools:text="JL Soekarno Hatta Lowokwaru Malang" />
 
         <TextView
-            android:id="@+id/phone_hospital"
+            android:id="@+id/phone_klinik"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"

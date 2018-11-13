@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.Toast
 import com.example.asus.medihome.R
-import kotlinx.android.synthetic.main.data_pasien_dialog.*
+import kotlinx.android.synthetic.main.dialog_data_pasien.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -31,7 +31,7 @@ class DataPasienDialog : DialogFragment(){
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.data_pasien_dialog, container, false)
+        return inflater.inflate(R.layout.dialog_data_pasien, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

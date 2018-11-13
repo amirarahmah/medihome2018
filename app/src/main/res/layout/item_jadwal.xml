@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/jadwal_dokter_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/oval_background_grey"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        android:paddingLeft="8dp"
+        android:paddingTop="3dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="3dp"
+        android:text="15.00-18.00"
+        android:textColor="#fff"
+        android:textSize="10sp"
+        android:layout_below="@id/hari"/>
+
+</RelativeLayout>

@@ -40,9 +40,7 @@
         android:layout_marginLeft="2dp"
         android:layout_marginTop="2dp"
         android:layout_marginRight="2dp"
-        android:layout_marginBottom="8dp">
-
-    </android.support.v7.widget.AppCompatSpinner>
+        android:layout_marginBottom="8dp"/>
 
     <View
         android:id="@+id/pembatas2"

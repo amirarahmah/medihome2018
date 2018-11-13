@@ -1,28 +1,18 @@
 package com.example.asus.medihome.ui.pesanan
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.NumberPicker
 import com.example.asus.medihome.R
-import com.example.asus.medihome.model.Hospital
-import com.example.asus.medihome.model.Pesanan
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.example.asus.medihome.ui.booking_kamar.profile_rs.SectionsPagerAdapter
 import kotlinx.android.synthetic.main.fragment_pesanan.*
 
 class PesananFragment : Fragment() {
 
-    lateinit var mAdapter : PesananAdapter
-    lateinit var pesananList : ArrayList<Pesanan>
+    private var mSectionsPagerAdapter: PesananPagerAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -34,37 +24,14 @@ class PesananFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        pesananList = arrayListOf()
+        mSectionsPagerAdapter = PesananPagerAdapter(childFragmentManager)
 
-        setupRecyclerView()
-        progressBar?.let { it.visibility = View.VISIBLE }
+        container.adapter = mSectionsPagerAdapter
 
-        val pesananRef = FirebaseDatabase.getInstance().reference.child("pesanan")
-        val userId = FirebaseAuth.getInstance().currentUser?.uid
-
-        pesananRef.child(userId!!).addValueEventListener(object : ValueEventListener{
-            override fun onCancelled(p0: DatabaseError) {
-                progressBar?.let { it.visibility = View.INVISIBLE }
-            }
-
-            override fun onDataChange(p0: DataSnapshot) {
-                progressBar?.let { it.visibility = View.INVISIBLE }
-                pesananList.clear()
-                for(data in p0.children){
-                    val pesanan = data.getValue(Pesanan::class.java)
-                    pesananList.add(pesanan!!)
-                }
-                mAdapter.notifyDataSetChanged()
-            }
-        })
+        container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
+        tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
 
     }
 
-
-    private fun setupRecyclerView() {
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        mAdapter = PesananAdapter(pesananList)
-        recyclerView.adapter = mAdapter
-    }
 
 }

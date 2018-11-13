@@ -10,8 +10,7 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.Toast
 import com.example.asus.medihome.R
-import com.example.asus.medihome.R.string.pekerjaan
-import kotlinx.android.synthetic.main.data_pasien_dialog2.*
+import kotlinx.android.synthetic.main.dialog_data_pasien2.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -26,12 +25,12 @@ class DataPasien2Dialog : DialogFragment(){
     var tanggalLahirPasien: String = ""
 
     interface OnDataPasienSaved{
-        fun sendDataPasien(namaPasien : String, tanggalLahirPasien : String,
-                           jenisKelaminPasien : String,  email : String, phone : String)
+        fun sendDataPasien(namaPasien: String, tanggalLahirPasien: String,
+                           jenisKelaminPasien: String, email: String, phone: String, noRekam: String)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.data_pasien_dialog2, container, false)
+        return inflater.inflate(R.layout.dialog_data_pasien2, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,6 +56,7 @@ class DataPasien2Dialog : DialogFragment(){
         val nama = nama_lengkap_et.text.toString().trim()
         val email = email_et.text.toString().trim()
         val notelp = nomor_telepon_et.text.toString().trim()
+        val noRekam = nomor_rekam_et.text.toString().trim()
 
         val idxJenisKelamin = rg_jenis_kelamin.checkedRadioButtonId
         val rbJenisKelamin = view.findViewById<RadioButton>(idxJenisKelamin)
@@ -71,7 +71,7 @@ class DataPasien2Dialog : DialogFragment(){
                 val jenisKelamin = rbJenisKelamin.text
 
                 mListener.sendDataPasien(nama, tanggalLahirPasien, jenisKelamin.toString(),
-                        email, notelp)
+                        email, notelp, noRekam)
 
                 dialog.dismiss()
             }

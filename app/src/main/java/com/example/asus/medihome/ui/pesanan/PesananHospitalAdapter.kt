@@ -4,16 +4,15 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import com.example.asus.medihome.R
 import com.example.asus.medihome.model.Pesanan
 
-class PesananAdapter(val listPesanan : ArrayList<Pesanan>) : RecyclerView.Adapter<PesananAdapter.MyViewHolder>() {
+class PesananHospitalAdapter(val listPesanan : ArrayList<Pesanan>) : RecyclerView.Adapter<PesananHospitalAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_pesanan, parent, false)
+                .inflate(R.layout.item_pesanan_hospital, parent, false)
         return MyViewHolder(view)
     }
 

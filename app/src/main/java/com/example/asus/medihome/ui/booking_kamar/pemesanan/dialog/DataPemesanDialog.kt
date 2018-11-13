@@ -1,16 +1,14 @@
 package com.example.asus.medihome.ui.booking_kamar.pemesanan.dialog
 
-import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import android.widget.Toast
 import com.example.asus.medihome.R
-import kotlinx.android.synthetic.main.data_pemesan_dialog.*
+import kotlinx.android.synthetic.main.dialog_data_pemesan.*
 
 class DataPemesanDialog : DialogFragment(){
 
@@ -22,7 +20,7 @@ class DataPemesanDialog : DialogFragment(){
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.data_pemesan_dialog, container, false)
+        return inflater.inflate(R.layout.dialog_data_pemesan, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

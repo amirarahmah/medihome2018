@@ -24,10 +24,10 @@ class MetodePembayaranActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val random = SecureRandom()
-        val sb = StringBuilder(12)
+        val sb = StringBuilder(14)
         val ab = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
-        for (i in 1..12) {
+        for (i in 1..14) {
             sb.append(ab[random.nextInt(ab.length)])
         }
 

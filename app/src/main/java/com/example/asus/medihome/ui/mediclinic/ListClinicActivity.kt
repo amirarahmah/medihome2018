@@ -13,11 +13,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
 import android.view.View
 import com.example.asus.medihome.R
-import com.example.asus.medihome.R.drawable.hospital
 import com.example.asus.medihome.model.Clinic
-import com.example.asus.medihome.ui.booking_kamar.dialog.SortingDialog
-import com.example.asus.medihome.ui.booking_kamar.profile_rs.ProfilRumahSakitActivity
-import com.example.asus.medihome.ui.mediclinic.adapter.ClinicNearbyAdapter
+import com.example.asus.medihome.ui.mediclinic.adapter.ClinicAdapter
 import com.example.asus.medihome.ui.mediclinic.dialog.SortingClinicDialog
 import com.example.asus.medihome.ui.mediclinic.profile.ProfileClinicActivity
 import com.google.android.gms.common.api.ApiException
@@ -36,7 +33,7 @@ class ListClinicActivity : AppCompatActivity() {
     private lateinit var mFusedLocationProviderClient: FusedLocationProviderClient
 
     var listClinics: ArrayList<Clinic> = arrayListOf()
-    lateinit var mAdapter: ClinicNearbyAdapter
+    lateinit var mAdapter: ClinicAdapter
 
     lateinit var clinicRef: DatabaseReference
 
@@ -118,14 +115,14 @@ class ListClinicActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        mAdapter = ClinicNearbyAdapter(listClinics) { clinic: Clinic -> clinicClicked(clinic) }
+        mAdapter = ClinicAdapter(listClinics) { clinic: Clinic -> clinicClicked(clinic) }
         recyclerView.adapter = mAdapter
     }
 
 
     private fun clinicClicked(clinic: Clinic) {
         val intent = Intent(this, ProfileClinicActivity::class.java)
-        intent.putExtra("hospitalId", clinic.cliniclId)
+        intent.putExtra("idKlinik", clinic.cliniclId)
         intent.putExtra("nama", clinic.nama)
         intent.putExtra("kategoriKlinik", kategoriKlinik)
         intent.putExtra("nomorTelpon", clinic.nomorTelpon)

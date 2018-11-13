@@ -32,7 +32,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:tint="@android:color/white"
-                app:srcCompat="@drawable/ic_close" />
+                app:srcCompat="@drawable/ic_close_white" />
 
         </LinearLayout>
 
@@ -70,6 +70,35 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Alamat Email"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/email_et"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="4dp"
+                android:ems="10"
+                android:inputType="textEmailAddress" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Nomor Telepon" />
+
+            <EditText
+                android:id="@+id/nomor_telepon_et"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="4dp"
+                android:ems="10"
+                android:inputType="phone" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/tanggal_lahir"
                 android:textSize="16sp" />
@@ -86,20 +115,6 @@
                 android:layout_marginBottom="8dp"
                 android:background="#B0B0B0"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="@string/tempat_lahir"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/tempat_lahir_et"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="4dp"
-                android:ems="10"
-                android:inputType="textCapWords" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -134,92 +149,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="@string/status_perkawinan"
-                android:textSize="16sp" />
+                android:text="Nomor Rekam Medis*" />
 
             <EditText
-                android:id="@+id/status_et"
+                android:id="@+id/nomor_rekam_et"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="4dp"
                 android:ems="10"
-                android:inputType="textCapWords" />
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="@string/alamat_domisili"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/alamat_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:ems="10"
-                android:inputType="textMultiLine|textCapSentences"
-                android:maxLines="3" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="@string/pekerjaan"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/pekerjaan_et"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="4dp"
-                android:ems="10"
-                android:inputType="text|textCapWords" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="@string/golongan_darah"
-                android:textSize="16sp" />
-
-            <RadioGroup
-                android:id="@+id/rg_goldar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="80dp"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/rb_goldar_a"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="A" />
-
-                <RadioButton
-                    android:id="@+id/rb_goldar_b"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="B" />
-
-                <RadioButton
-                    android:id="@+id/rb_goldar_ab"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="AB" />
-
-                <RadioButton
-                    android:id="@+id/rb_goldar_o"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="O" />
-
-            </RadioGroup>
+                android:layout_marginBottom="60dp"
+                android:inputType="text" />
 
         </LinearLayout>
 

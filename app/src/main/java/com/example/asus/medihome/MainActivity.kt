@@ -1,19 +1,25 @@
 package com.example.asus.medihome
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import com.example.asus.medihome.extension.toast
+import com.example.asus.medihome.notification.MyFirebaseMessagingService
 import com.example.asus.medihome.ui.emergency.EmergencyFragment
 import com.example.asus.medihome.ui.home.HomeFragment
 import com.example.asus.medihome.ui.info_sehat.InfoSehatFragment
 import com.example.asus.medihome.ui.pesanan.PesananFragment
 import com.example.asus.medihome.ui.profil.ProfilFragment
+import com.example.asus.medihome.util.PreferenceHelper
+import com.example.asus.medihome.util.PreferenceHelper.get
+import com.example.asus.medihome.util.PreferenceHelper.set
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
-import android.content.Intent
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,8 +31,34 @@ class MainActivity : AppCompatActivity() {
         updateFragment(HomeFragment())
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
+        sendTokenToServer()
+
     }
 
+    private fun sendTokenToServer() {
+        Log.d("MainActivity", "send token to server")
+        val prefs = PreferenceHelper.defaultPrefs(this)
+
+        if (!prefs["tokenSended", false]!!) {
+            val token: String? = prefs["firebaseToken"]
+            val userId = FirebaseAuth.getInstance().currentUser?.uid
+
+            val userRef = FirebaseDatabase
+                    .getInstance()
+                    .reference
+                    .child("users")
+                    .child(userId!!)
+
+
+            userRef.child("token").setValue(token).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    prefs["tokenSended"] = true
+                }
+            }
+
+        }
+
+    }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {

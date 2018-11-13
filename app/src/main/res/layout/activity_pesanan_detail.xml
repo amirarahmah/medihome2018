@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/info_pesanan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Sedang menunggu konfirmasi
+dari klinik."
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/info_pesanan"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/divider_grey" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/detail_pesanan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider">
+
+            <TextView
+                android:id="@+id/tanggal_lahir_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="4 April 1998"
+                android:textColor="@color/primaryBlack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tgl_lahir" />
+
+            <TextView
+                android:id="@+id/tgl_lahir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
+                android:text="Tanggal Lahir"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/jenis_kelamin" />
+
+            <TextView
+                android:id="@+id/jenis_kelamin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:text="Jenis Kelamin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nama_lengkap_pasien" />
+
+            <View
+                android:id="@+id/view7"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/divider_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pukul_tv" />
+
+            <TextView
+                android:id="@+id/nama_klinik"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@+id/imageview_thumbnail5"
+                app:layout_constraintTop_toTopOf="@+id/imageview_thumbnail5"
+                tools:text="Klinik Gigi MediHome A" />
+
+            <ImageView
+                android:id="@+id/imageview_thumbnail5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/medihome_hospital_icon" />
+
+            <ImageView
+                android:id="@+id/imageview_thumbnail4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageview_thumbnail5"
+                app:srcCompat="@drawable/medihome_location_icon" />
+
+            <TextView
+                android:id="@+id/pukul_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="11:00-14:00"
+                android:textColor="@color/primaryBlack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/pukul" />
+
+            <TextView
+                android:id="@+id/tanggal_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="11 November 2018"
+                android:textColor="@color/primaryBlack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tanggal" />
+
+            <TextView
+                android:id="@+id/nama_pasien_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Amira Fauzia"
+                android:textColor="@color/primaryBlack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/nama_lengkap_pasien" />
+
+            <TextView
+                android:id="@+id/jenis_kelamin_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Perempuan"
+                android:textColor="@color/primaryBlack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/jenis_kelamin" />
+
+            <ImageView
+                android:id="@+id/imageview_thumbnail3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="@+id/imageview_thumbnail2"
+                app:layout_constraintTop_toBottomOf="@+id/imageview_thumbnail2"
+                app:srcCompat="@drawable/medihome_biaya_icon" />
+
+            <TextView
+                android:id="@+id/nama_layanan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/nama_klinik"
+                app:layout_constraintTop_toTopOf="@+id/imageview_thumbnail"
+                tools:text="Tambal Sementara" />
+
+            <TextView
+                android:id="@+id/alamat_klinik"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/nama_klinik"
+                app:layout_constraintTop_toBottomOf="@+id/nama_klinik"
+                tools:text="Jalan Veteran, Ketawanggede, Lowokwaru,
+Kota Malang, Jawa Timur" />
+
+            <TextView
+                android:id="@+id/nama_dokter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/nama_layanan"
+                app:layout_constraintTop_toBottomOf="@+id/nama_layanan"
+                tools:text="dr Amira Fauzia" />
+
+
+            <TextView
+                android:id="@+id/harga_layanan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/colorAccent"
+                app:layout_constraintStart_toStartOf="@+id/nama_dokter"
+                app:layout_constraintTop_toBottomOf="@+id/nama_dokter"
+                app:layout_constraintVertical_bias="1.0"
+                tools:text="Rp400.000" />
+
+            <ImageView
+                android:id="@+id/imageview_thumbnail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/alamat_klinik"
+                app:srcCompat="@drawable/medihome_layanan_icon" />
+
+
+            <ImageView
+                android:id="@+id/imageview_thumbnail2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageview_thumbnail"
+                app:srcCompat="@drawable/medihome_clinic_doctor_icon" />
+
+
+            <TextView
+                android:id="@+id/id_reservasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="ID Reservasi"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageview_thumbnail3" />
+
+            <TextView
+                android:id="@+id/id_reservasi_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="FNDSUELSA43213SA"
+                android:textColor="@color/primaryBlack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/id_reservasi" />
+
+            <TextView
+                android:id="@+id/nama_lengkap_pasien"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Nama Pasien"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view7" />
+
+            <TextView
+                android:id="@+id/tanggal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:text="Tanggal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/id_reservasi" />
+
+            <TextView
+                android:id="@+id/pukul"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:text="Pukul"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tanggal" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <Button
+            android:layout_below="@id/detail_pesanan"
+            android:id="@+id/btn_batal_reservasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/md_grey_600"
+            android:text="Batalkan Reservasi"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/button_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="30dp"
+            android:background="@color/colorAccent"
+            android:text="Lanjutkan ke Pembayaran"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
+</ScrollView>

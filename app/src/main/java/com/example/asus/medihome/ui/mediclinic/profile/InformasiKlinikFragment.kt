@@ -34,11 +34,11 @@ class InformasiKlinikFragment : Fragment(), OnMapReadyCallback {
 
         mapFragment.getMapAsync(this)
 
-        val alamatHospital = activity?.intent?.extras?.getString("alamat")
-        val phoneHospital = activity?.intent?.extras?.getString("nomorTelpon")
+        val alamatKlinik = activity?.intent?.extras?.getString("alamat")
+        val phoneKlinik= activity?.intent?.extras?.getString("nomorTelpon")
 
-        alamat_hospital.text = alamatHospital
-        phone_hospital.text = phoneHospital
+        alamat_klinik.text = alamatKlinik
+        phone_klinik.text = phoneKlinik
 
 
     }

@@ -10,9 +10,15 @@ import com.bumptech.glide.Glide
 import com.example.asus.medihome.R
 import com.example.asus.medihome.model.Clinic
 
-class ClinicNearbyAdapter(val listClinics : ArrayList<Clinic>,
-                          val clickListener: (Clinic) -> Unit)
-    : RecyclerView.Adapter<ClinicNearbyAdapter.MyViewHolder>() {
+class ClinicAdapter(var listClinics : ArrayList<Clinic>,
+                    val clickListener: (Clinic) -> Unit)
+    : RecyclerView.Adapter<ClinicAdapter.MyViewHolder>() {
+
+
+    fun filterList(filterdClinics: ArrayList<Clinic>) {
+        this.listClinics = filterdClinics
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context)

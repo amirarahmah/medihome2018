@@ -11,7 +11,7 @@ import com.example.asus.medihome.R
 import com.example.asus.medihome.model.LayananDetaill
 import com.example.asus.medihome.ui.mediclinic.adapter.DetailLayananAdapter
 import com.example.asus.medihome.ui.mediclinic.reservasi.ReservasiActivity
-import kotlinx.android.synthetic.main.data_pasien_dialog.*
+import kotlinx.android.synthetic.main.dialog_data_pasien.*
 import kotlinx.android.synthetic.main.fragment_kamar.*
 
 class LayananDetailDialog : DialogFragment() {
@@ -19,13 +19,15 @@ class LayananDetailDialog : DialogFragment() {
     lateinit var mAdapter: DetailLayananAdapter
     lateinit var layananList: ArrayList<LayananDetaill>
 
-    var namaKlinik: String? = ""
+    var namaKlinik : String? = ""
+    var alamatKlinik : String? = ""
+    var idKlinik : String? = ""
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        return inflater.inflate(R.layout.layanan_detail_dialog, container,
+        return inflater.inflate(R.layout.dialog_layanan_detail, container,
                 false)
 
     }
@@ -34,7 +36,9 @@ class LayananDetailDialog : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val mArgs = arguments
+        idKlinik = mArgs?.getString("idKlinik")
         namaKlinik = mArgs?.getString("namaKlinik")
+        alamatKlinik = mArgs?.getString("alamatKlinik")
 
         button_close.setOnClickListener {
             dialog.dismiss()
@@ -68,8 +72,11 @@ class LayananDetailDialog : DialogFragment() {
 
     private fun onReservasiClicked(layanan: LayananDetaill) {
         val intent = Intent(context, ReservasiActivity::class.java)
+        intent.putExtra("idKlinik", idKlinik)
         intent.putExtra("namaLayanan", layanan.namaLayanan)
+        intent.putExtra("hargaLayanan", layanan.harga)
         intent.putExtra("namaKlinik", namaKlinik)
+        intent.putExtra("alamatKlinik", alamatKlinik)
         startActivity(intent)
     }
 

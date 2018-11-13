@@ -48,6 +48,12 @@
                 android:resource="@xml/picker_provider_paths" />
         </provider>
 
+        <service android:name=".notification.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait"
@@ -114,7 +120,16 @@
             android:name=".ui.mediclinic.profile.ProfileClinicActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.mediclinic.reservasi.ReservasiActivity"></activity>
+        <activity android:name=".ui.mediclinic.reservasi.ReservasiActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.pesanan_detail.PesananDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.pesanan_detail.ReviewPesananClinicActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.pesanan_detail.MetodePembayaranClinicActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.pesanan_detail.TransferClinicActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

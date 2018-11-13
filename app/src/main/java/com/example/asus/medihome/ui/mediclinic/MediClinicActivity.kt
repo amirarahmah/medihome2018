@@ -8,6 +8,8 @@ import android.view.MenuItem
 import com.example.asus.medihome.R
 import com.example.asus.medihome.model.KategoriKlinik
 import com.example.asus.medihome.ui.mediclinic.adapter.KategoriKlinikAdapter
+import com.example.asus.medihome.ui.mediclinic.dialog.CariClinicDialog
+import com.example.asus.medihome.ui.mediclinic.reservasi.PilihJadwalDialog
 import com.example.asus.medihome.util.ItemOffsetDecoration
 import kotlinx.android.synthetic.main.activity_medi_clinic.*
 
@@ -36,6 +38,16 @@ class MediClinicActivity : AppCompatActivity() {
 
         setupRecyclerView()
 
+        search_clinic.setOnClickListener {
+            showCariKlinikDialog()
+        }
+
+    }
+
+    private fun showCariKlinikDialog() {
+        val cariClinicDialog = CariClinicDialog()
+        cariClinicDialog.show(supportFragmentManager,
+                "cari_klinik_dialog_fragment")
     }
 
 

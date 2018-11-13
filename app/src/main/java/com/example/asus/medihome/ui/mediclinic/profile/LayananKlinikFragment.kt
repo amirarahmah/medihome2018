@@ -52,9 +52,13 @@ class LayananKlinikFragment : Fragment() {
 
 
     private fun onReservasiClicked(layanan: Layanan) {
+        val idKlinik = activity?.intent?.extras?.getString("idKlinik")
         val namaKlinik = activity?.intent?.extras?.getString("nama")
+        val alamatKlinik = activity?.intent?.extras?.getString("alamat")
         val args = Bundle()
+        args.putString("idKlinik", idKlinik)
         args.putString("namaKlinik", namaKlinik)
+        args.putString("alamatKlinik", alamatKlinik)
         val dialog = LayananDetailDialog.newInstance()
         dialog.arguments = args
         val fragmentManager = childFragmentManager
