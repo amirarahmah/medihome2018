@@ -36,8 +36,10 @@ class ReviewPesananClinicActivity : AppCompatActivity() {
                     }
 
                     override fun onDataChange(p0: DataSnapshot) {
-                        val reservation = p0.getValue(Reservation::class.java)
-                        updateUI(reservation)
+                        if(p0.exists()){
+                            val reservation = p0.getValue(Reservation::class.java)
+                            updateUI(reservation)
+                        }
                     }
                 })
 

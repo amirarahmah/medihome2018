@@ -2,6 +2,7 @@ package com.example.asus.medihome.ui.pesanan
 
 import android.content.Context
 import android.content.Intent
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,26 @@ class PesananClinicAdapter(val listPesanan : ArrayList<Reservation>, val mContex
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val reservation = listPesanan[position]
 
+        if(reservation.confirmed == "true"){
+            if(reservation.payment == "paid"){
+                holder.statusTv.text = "Pembayaran Berhasil"
+                holder.statusTv.background = ContextCompat.getDrawable(mContext, R.drawable.oval_background)
+                holder.telahDikonfirmasiTv.visibility = View.GONE
+            }else{
+                holder.statusTv.text = "Menunggu Pembayaran"
+                holder.statusTv.background = ContextCompat.getDrawable(mContext, R.drawable.oval_background_yellow)
+                holder.telahDikonfirmasiTv.visibility = View.VISIBLE
+            }
+        }else if(reservation.confirmed == "false"){
+            holder.statusTv.text = "Reservasi ditolak"
+            holder.statusTv.background = ContextCompat.getDrawable(mContext, R.drawable.oval_background_red)
+            holder.telahDikonfirmasiTv.visibility = View.GONE
+        }else if(reservation.confirmed == ""){
+            holder.statusTv.text = "Menunggu Konfirmasi"
+            holder.statusTv.background = ContextCompat.getDrawable(mContext, R.drawable.oval_background_grey)
+            holder.telahDikonfirmasiTv.visibility = View.GONE
+        }
+
         holder.namaKlinikTv.text = reservation.namaKlinik
         holder.namaLayananTv.text = reservation.layanan
         holder.namaDokterTv.text = reservation.dokter
@@ -36,7 +57,6 @@ class PesananClinicAdapter(val listPesanan : ArrayList<Reservation>, val mContex
         holder.namaPasienTv.text = reservation.namaPasien
         holder.tanggalTv.text = reservation.tanggal
         holder.pukulTv.text = reservation.pukul
-        holder.satusTv.text = "Menunggu Konfirmasi"
 
         holder.pesananContainer.setOnClickListener {
             val intent = Intent(mContext, PesananDetailActivity::class.java)
@@ -58,7 +78,8 @@ class PesananClinicAdapter(val listPesanan : ArrayList<Reservation>, val mContex
         val namaPasienTv = itemView.nama_pasien_tv
         val tanggalTv = itemView.tanggal_tv
         val pukulTv = itemView.pukul_tv
-        val satusTv = itemView.status_tv
+        val statusTv = itemView.status_tv
+        val telahDikonfirmasiTv = itemView.telah_dikonfirmasi_tv
 
     }
 

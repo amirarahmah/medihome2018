@@ -28,8 +28,11 @@
 
             <ImageButton
                 android:id="@+id/button_close"
-                android:layout_width="?attr/actionBarSize"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:tint="@android:color/white"
                 app:srcCompat="@drawable/ic_close_white" />

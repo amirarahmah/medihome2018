@@ -82,7 +82,7 @@ class ListClinicActivity : AppCompatActivity() {
                 progressBar.visibility = View.GONE
                 listClinics.clear()
                 for (data in p0.children) {
-                    val clinicId = data.child("hospitalId").value.toString()
+                    val clinicId = data.child("cliniclId").value.toString()
                     val nama = data.child("nama").value.toString()
                     val nomorTelpon = data.child("nomorTelpon").value.toString()
                     val kota = data.child("kota").value.toString()

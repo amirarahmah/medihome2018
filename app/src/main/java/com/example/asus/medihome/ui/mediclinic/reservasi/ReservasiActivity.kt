@@ -8,14 +8,26 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.example.asus.medihome.MainActivity
 import com.example.asus.medihome.R
-import com.example.asus.medihome.R.string.layanan
+import com.example.asus.medihome.api.Data
+import com.example.asus.medihome.api.NotifReservasi
+import com.example.asus.medihome.api.NotifResponse
+import com.example.asus.medihome.api.NotifService
 import com.example.asus.medihome.model.Reservation
+import com.example.asus.medihome.model.Userclinic
 import com.example.asus.medihome.ui.booking_kamar.pemesanan.dialog.DataPasien2Dialog
 import com.example.asus.medihome.ui.booking_kamar.pemesanan.dialog.DataPemesanDialog
+import com.example.asus.medihome.util.Constant
 import com.example.asus.medihome.util.PreferenceHelper
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.lmntrx.android.library.livin.missme.ProgressDialog
 import kotlinx.android.synthetic.main.activity_reservasi.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.security.SecureRandom
 
 class ReservasiActivity : AppCompatActivity(), DataPemesanDialog.OnDataSaved,
@@ -23,6 +35,7 @@ class ReservasiActivity : AppCompatActivity(), DataPemesanDialog.OnDataSaved,
 
 
     private lateinit var prefs: SharedPreferences
+    private lateinit var progressDialog: ProgressDialog
 
     var namaKlinik : String? = ""
     var alamatKlinik : String? = ""
@@ -38,8 +51,11 @@ class ReservasiActivity : AppCompatActivity(), DataPemesanDialog.OnDataSaved,
     var pukul : String = ""
 
     var namaPasien : String = ""
+    var emailPasien : String = ""
+    var noTelpPasien : String = ""
     var jenisKelaminPasien : String = ""
     var tglLahirPasien : String = ""
+    var noRekam : String = ""
 
     override fun sendDataPemesan(namaLengkap: String, email: String, phone: String) {
         namaPemesan = namaLengkap
@@ -74,6 +90,9 @@ class ReservasiActivity : AppCompatActivity(), DataPemesanDialog.OnDataSaved,
         this.namaPasien = namaPasien
         this.jenisKelaminPasien = jenisKelaminPasien
         this.tglLahirPasien = tanggalLahirPasien
+        this.emailPasien = email
+        this.noTelpPasien = phone
+        this.noRekam = noRekam
 
     }
 
@@ -99,6 +118,10 @@ class ReservasiActivity : AppCompatActivity(), DataPemesanDialog.OnDataSaved,
         emailPemesan = prefs.getString("email", "")
         noTelp = prefs.getString("noTelp", "")
 
+        progressDialog = ProgressDialog(this)
+        progressDialog.setMessage("Silahkan Menunggu..")
+        progressDialog.setCancelable(false)
+
         setDataPemesan()
 
 
@@ -121,6 +144,7 @@ class ReservasiActivity : AppCompatActivity(), DataPemesanDialog.OnDataSaved,
     }
 
     private fun saveReservationToDatabase() {
+        progressDialog.show()
         val reservasiRef = FirebaseDatabase.getInstance().reference.child("reservasi")
 
         val random = SecureRandom()
@@ -135,21 +159,60 @@ class ReservasiActivity : AppCompatActivity(), DataPemesanDialog.OnDataSaved,
 
         val idKlinik = intent?.extras?.getString("idKlinik")
         val userId = FirebaseAuth.getInstance().currentUser?.uid
+        val pesan = pesan_et.text.toString()
 
         val reservasi = Reservation(idReservasi, idKlinik!!, userId!!, namaKlinik!!, alamatKlinik!!,
                 namaLayanan!!, namaDokter, hargaLayanan!!, tanggalReservasi, pukul, namaPasien,
-                jenisKelaminPasien, tglLahirPasien)
+                emailPasien, noTelpPasien, jenisKelaminPasien, tglLahirPasien,
+                noRekam, pesan)
 
 
         reservasiRef.child(idReservasi).setValue(reservasi).addOnCompleteListener {task ->
             if(task.isSuccessful){
-                Toast.makeText(this, "Reservasi berhasil dilakukan", Toast.LENGTH_SHORT).show()
-                navigateToMainActivity()
+                sendNotificationToClinic(idKlinik, idReservasi)
             }else{
+                progressDialog.dismiss()
                 Toast.makeText(this, ""+task.exception?.message, Toast.LENGTH_SHORT).show()
             }
         }
 
+    }
+
+    private fun sendNotificationToClinic(idKlinik: String, idReservasi: String) {
+        val clinicRef = FirebaseDatabase.getInstance().reference.child("userclinic")
+        clinicRef.orderByChild("clinicId").equalTo(idKlinik)
+                .addValueEventListener(object : ValueEventListener{
+                    override fun onCancelled(p0: DatabaseError) {
+                        progressDialog.dismiss()
+                    }
+
+                    override fun onDataChange(p0: DataSnapshot) {
+                        for (data in p0.children) {
+                            val userClinic = data.getValue(Userclinic::class.java)
+                            val token = userClinic?.token
+
+                            val notifData = Data(idReservasi, "Lihat untuk konfirmasi",
+                                    "Anda memiliki reservasi baru")
+                            val notif = NotifReservasi(token!!, notifData)
+
+                            NotifService.create().sendNotifToClinic(notif, "key=${Constant.CLOUD_MESSAGE_KEY}")
+                                    .enqueue(object : Callback<NotifResponse> {
+                                        override fun onFailure(call: Call<NotifResponse>, t: Throwable) {
+                                            progressDialog.dismiss()
+                                        }
+
+                                        override fun onResponse(call: Call<NotifResponse>, response: Response<NotifResponse>) {
+                                            progressDialog.dismiss()
+                                            Toast.makeText(this@ReservasiActivity,
+                                                    "Reservasi berhasil dilakukan", Toast.LENGTH_SHORT).show()
+                                            navigateToMainActivity()
+                                        }
+
+                                    })
+
+                        }
+                    }
+                })
     }
 
     private fun showPilihJadwalDialog() {

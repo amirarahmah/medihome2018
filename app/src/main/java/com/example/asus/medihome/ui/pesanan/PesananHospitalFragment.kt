@@ -51,6 +51,13 @@ class PesananHospitalFragment : android.support.v4.app.Fragment() {
                     val pesanan = data.getValue(Pesanan::class.java)
                     pesananList.add(pesanan!!)
                 }
+
+                if(pesananList.size > 0){
+                    tidak_ada_reservasi_tv.visibility = View.GONE
+                }else{
+                    tidak_ada_reservasi_tv.visibility = View.VISIBLE
+                }
+
                 mAdapter.notifyDataSetChanged()
             }
         })

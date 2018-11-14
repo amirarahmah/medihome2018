@@ -16,16 +16,35 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/nama_klinik"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginRight="8dp"
-            android:textColor="@color/primaryBlack"
-            android:textSize="16sp"
-            tools:text="Klinik Mitra Bersama" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/nama_klinik"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/primaryBlack"
+                android:textSize="16sp"
+                tools:text="Klinik Mitra Bersama" />
+
+            <TextView
+                android:id="@+id/telah_dikonfirmasi_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="8dp"
+                android:visibility="gone"
+                android:textColor="@color/md_yellow_700"
+                android:textSize="12sp"
+                android:text="Telah Dikonfirmasi" />
+
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
@@ -38,7 +57,6 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
 
             <TextView
                 android:id="@+id/pukul_tv"
@@ -218,7 +236,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="8dp"
-            android:text="Liat Detail"
+            android:text="Lihat Detail"
             android:textColor="@color/colorPrimary" />
 
     </LinearLayout>

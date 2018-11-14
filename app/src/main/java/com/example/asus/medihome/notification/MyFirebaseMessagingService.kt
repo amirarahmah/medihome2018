@@ -11,6 +11,7 @@ import android.support.v4.app.NotificationCompat
 import android.util.Log
 import com.example.asus.medihome.MainActivity
 import com.example.asus.medihome.R
+import com.example.asus.medihome.ui.pesanan_detail.PesananDetailActivity
 import com.example.asus.medihome.util.PreferenceHelper
 import com.example.asus.medihome.util.PreferenceHelper.get
 import com.example.asus.medihome.util.PreferenceHelper.set
@@ -66,7 +67,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     private fun sendNotification(message: RemoteMessage?) {
-        val intent = Intent(this, MainActivity::class.java)
+        val idReservasi = message?.data?.get("idReservasi")
+
+        val intent = Intent(this, PesananDetailActivity::class.java)
+        intent.putExtra("idReservation", idReservasi)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT)

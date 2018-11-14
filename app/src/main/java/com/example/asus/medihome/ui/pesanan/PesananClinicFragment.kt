@@ -14,7 +14,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.fragment_pesanan_hospital.*
+import kotlinx.android.synthetic.main.fragment_pesanan_clinic.*
 
 
 class PesananClinicFragment : Fragment() {
@@ -53,6 +53,13 @@ class PesananClinicFragment : Fragment() {
                             val pesanan = data.getValue(Reservation::class.java)
                             pesananList.add(pesanan!!)
                         }
+
+                        if(pesananList.size > 0){
+                            tidak_ada_reservasi_tv?.visibility = View.GONE
+                        }else{
+                            tidak_ada_reservasi_tv?.visibility = View.VISIBLE
+                        }
+
                         mAdapter.notifyDataSetChanged()
                     }
                 })

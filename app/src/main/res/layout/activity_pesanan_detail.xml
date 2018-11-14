@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:fillViewport="true"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -34,6 +34,57 @@ dari klinik."
             android:layout_marginBottom="4dp"
             android:background="@color/divider_grey" />
 
+        <android.support.v7.widget.CardView
+            android:id="@+id/info_penolakan_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            android:visibility="gone">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/informasi_penolakan"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@color/divider_grey" />
+
+                <TextView
+                    android:id="@+id/informasi_penolakan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:textColor="@color/white"
+                    tools:text="Mohon maaf reservasi di hari tersebut sudah penuh. Terima kasih." />
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
         <android.support.constraint.ConstraintLayout
             android:id="@+id/detail_pesanan"
             android:layout_width="match_parent"
@@ -45,10 +96,10 @@ dari klinik."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="4 April 1998"
                 android:textColor="@color/primaryBlack"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tgl_lahir" />
+                app:layout_constraintTop_toTopOf="@+id/tgl_lahir"
+                tools:text="4 April 1998" />
 
             <TextView
                 android:id="@+id/tgl_lahir"
@@ -117,40 +168,40 @@ dari klinik."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="11:00-14:00"
                 android:textColor="@color/primaryBlack"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/pukul" />
+                app:layout_constraintTop_toTopOf="@+id/pukul"
+                tools:text="11:00-14:00" />
 
             <TextView
                 android:id="@+id/tanggal_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="11 November 2018"
                 android:textColor="@color/primaryBlack"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tanggal" />
+                app:layout_constraintTop_toTopOf="@+id/tanggal"
+                tools:text="11 November 2018" />
 
             <TextView
                 android:id="@+id/nama_pasien_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="Amira Fauzia"
                 android:textColor="@color/primaryBlack"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/nama_lengkap_pasien" />
+                app:layout_constraintTop_toTopOf="@+id/nama_lengkap_pasien"
+                tools:text="Amira Fauzia" />
 
             <TextView
                 android:id="@+id/jenis_kelamin_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="Perempuan"
                 android:textColor="@color/primaryBlack"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/jenis_kelamin" />
+                app:layout_constraintTop_toTopOf="@+id/jenis_kelamin"
+                tools:text="Perempuan" />
 
             <ImageView
                 android:id="@+id/imageview_thumbnail3"
@@ -238,10 +289,10 @@ Kota Malang, Jawa Timur" />
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="FNDSUELSA43213SA"
                 android:textColor="@color/primaryBlack"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/id_reservasi" />
+                app:layout_constraintTop_toTopOf="@+id/id_reservasi"
+                tools:text="FNDSUELSA43213SA" />
 
             <TextView
                 android:id="@+id/nama_lengkap_pasien"
@@ -276,10 +327,10 @@ Kota Malang, Jawa Timur" />
         </android.support.constraint.ConstraintLayout>
 
         <Button
-            android:layout_below="@id/detail_pesanan"
             android:id="@+id/btn_batal_reservasi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/detail_pesanan"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="32dp"
             android:layout_marginRight="16dp"
