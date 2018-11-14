@@ -73,8 +73,8 @@ class PilihJadwalDialog : DialogFragment(){
     }
 
     private fun setupSpinnerDokter() {
-        val listDokter = arrayListOf("drg. Iqbal Putra, Sp.BM", "drg. Amira Fauzia, Sp.KG",
-                "drg. Martin Siahaan, Sp.Ort")
+        val listDokter = arrayListOf("drg. Haikal Achmad, Sp.BM", "drg. Lilia Putri, Sp.KG",
+                "drg. Muhammad Bagus, Sp.Ort")
         spinner_dokter.setupView(listDokter)
 
         spinner_dokter.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{

@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_metode_pembayaran.*
 class MetodePembayaranClinicActivity : AppCompatActivity() {
 
     private var hargaLayanan: String? = ""
+    private var idReservation: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +21,7 @@ class MetodePembayaranClinicActivity : AppCompatActivity() {
 
         id_pesanan_tv.text = "ID Reservasi : "
 
-        val idReservation = intent?.extras?.getString("idReservasi")
+        idReservation = intent?.extras?.getString("idReservasi")
         hargaLayanan = intent?.extras?.getString("hargaLayanan")
 
         id_pesanan.text = idReservation
@@ -35,6 +36,7 @@ class MetodePembayaranClinicActivity : AppCompatActivity() {
     private fun navigateToTransferActivity() {
         val intent = Intent(this, TransferClinicActivity::class.java)
         intent.putExtra("hargaLayanan", hargaLayanan)
+        intent.putExtra("idReservation", idReservation)
         startActivity(intent)
     }
 
