@@ -9,4 +9,4 @@ data class Reservation(var idReservation : String = "", var idKlinik : String = 
                        var noTelpPasien : String = "", var jenisKelamin : String = "",
                        var tanggalLahir : String = "", var noRekam : String = "",
                        var pesan : String = "", var confirmed : String = "",
-                       var payment : String = "")
+                       var payment : String = "", var alasan : String = "")

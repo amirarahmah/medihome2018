@@ -1,9 +1,11 @@
 package com.example.asus.medihome.ui.mediclinic.dialog
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +14,7 @@ import com.example.asus.medihome.model.LayananDetaill
 import com.example.asus.medihome.ui.mediclinic.adapter.DetailLayananAdapter
 import com.example.asus.medihome.ui.mediclinic.reservasi.ReservasiActivity
 import kotlinx.android.synthetic.main.dialog_data_pasien.*
+import kotlinx.android.synthetic.main.dialog_ketentuan.*
 import kotlinx.android.synthetic.main.fragment_kamar.*
 
 class LayananDetailDialog : DialogFragment() {
@@ -19,9 +22,11 @@ class LayananDetailDialog : DialogFragment() {
     lateinit var mAdapter: DetailLayananAdapter
     lateinit var layananList: ArrayList<LayananDetaill>
 
-    var namaKlinik : String? = ""
-    var alamatKlinik : String? = ""
-    var idKlinik : String? = ""
+    var namaKlinik: String? = ""
+    var alamatKlinik: String? = ""
+    var idKlinik: String? = ""
+
+    lateinit var alertDialog: AlertDialog
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -71,6 +76,25 @@ class LayananDetailDialog : DialogFragment() {
 
 
     private fun onReservasiClicked(layanan: LayananDetaill) {
+        showAlertDialog(layanan)
+    }
+
+    private fun showAlertDialog(layanan: LayananDetaill) {
+        val dialogBuilder = AlertDialog.Builder(context!!)
+        val inflater = this.layoutInflater
+        val dialogView = inflater.inflate(R.layout.dialog_ketentuan, null)
+        dialogBuilder.setView(dialogView)
+                .setCancelable(false)
+                .setPositiveButton("Setuju") { dialogInterface, i ->
+                    navigateToReservasiActivity(layanan)
+                }.setNegativeButton("Batal") { dialogInterface, i ->
+                    alertDialog.dismiss()
+                }
+        alertDialog = dialogBuilder.create()
+        alertDialog.show()
+    }
+
+    private fun navigateToReservasiActivity(layanan: LayananDetaill) {
         val intent = Intent(context, ReservasiActivity::class.java)
         intent.putExtra("idKlinik", idKlinik)
         intent.putExtra("namaLayanan", layanan.namaLayanan)
@@ -80,7 +104,9 @@ class LayananDetailDialog : DialogFragment() {
         startActivity(intent)
     }
 
+    private fun showKetentuanDetailDialog() {
 
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

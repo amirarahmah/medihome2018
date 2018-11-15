@@ -79,6 +79,7 @@ class PesananDetailActivity : AppCompatActivity() {
         }else if(reservation?.confirmed == "false"){
             info_pesanan.text = "Reservasi yang Anda lakukan ditolak."
             info_penolakan_container.visibility = View.VISIBLE
+            informasi_penolakan.text = reservation.alasan
             detail_pesanan.visibility = View.GONE
             btn_batal_reservasi.visibility = View.GONE
             button_next.visibility = View.GONE

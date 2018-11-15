@@ -1,183 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.booking_kamar.pemesanan.TransferActivity">
+    android:fillViewport="true">
 
-
-    <LinearLayout
-        android:id="@+id/container1"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp">
+        android:layout_height="match_parent"
+        tools:context=".ui.booking_kamar.pemesanan.TransferActivity">
 
-        <TextView
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:textColor="@color/white"
-            android:background="@drawable/background_circle"/>
 
         <LinearLayout
+            android:id="@+id/container1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="12dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Selesaikan pembayaran Anda dalam waktu:"/>
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/background_circle"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@color/white" />
 
-            <TextView
-                android:id="@+id/waktu_pembayaran"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="30:00"
-                android:textSize="16sp"
-                android:layout_marginBottom="16dp"
-                android:textColor="@color/colorAccent"/>
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Selesaikan pembayaran Anda dalam waktu:" />
+
+                <TextView
+                    android:id="@+id/waktu_pembayaran"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="30:00"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
-
-    <View
-        android:id="@+id/divider1"
-        android:layout_below="@+id/container1"
-        android:layout_width="match_parent"
-        android:layout_height="6dp"
-        android:background="@color/divider_grey"/>
-
-    <LinearLayout
-        android:id="@+id/container2"
-        android:layout_below="@id/divider1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp">
-
-        <TextView
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:textColor="@color/white"
-            android:background="@drawable/background_circle"/>
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_below="@+id/container1"
+            android:background="@color/divider_grey" />
 
         <LinearLayout
+            android:id="@+id/container2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_below="@id/divider1"
+            android:layout_marginTop="12dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mohon transfer jumlah yang telah disesuaikan
-ke:"/>
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/background_circle"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="@color/white" />
 
-            <TextView
-                android:layout_marginTop="5dp"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nomor Rekening"
-                android:textSize="16sp"/>
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="7991 7991 91"
-                android:textSize="16sp"
-                android:textColor="@color/colorAccent"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mohon transfer jumlah yang telah disesuaikan
+ke:" />
 
-            <TextView
-                android:layout_marginTop="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nama Pemilik Rekening"
-                android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Nomor Rekening"
+                    android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="PT. MediHome"
-                android:textSize="16sp"
-                android:textColor="@color/colorAccent"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7991 7991 91"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp" />
 
-            <TextView
-                android:layout_marginTop="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total yang Dibayarkan"
-                android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Nama Pemilik Rekening"
+                    android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/total_pembayaran"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rp 500.567"
-                android:textSize="16sp"
-                android:layout_marginBottom="16dp"
-                android:textColor="@color/colorAccent"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PT. MediHome"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Total yang Dibayarkan"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/total_pembayaran"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="Rp 500.567"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
-
-    <View
-        android:id="@+id/divider2"
-        android:layout_below="@id/container2"
-        android:layout_width="match_parent"
-        android:layout_height="6dp"
-        android:background="@color/divider_grey"/>
-
-    <LinearLayout
-        android:id="@+id/container3"
-        android:layout_below="@id/divider2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp">
-
-        <TextView
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:textColor="@color/white"
-            android:background="@drawable/background_circle"/>
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_below="@id/container2"
+            android:background="@color/divider_grey" />
 
         <LinearLayout
+            android:id="@+id/container3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_below="@id/divider2"
+            android:layout_marginTop="12dp">
 
             <TextView
-                android:layout_marginTop="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Anda sudah membayar?"/>
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/background_circle"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="60dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Anda sudah membayar?" />
+
+                <ImageView
+                    android:id="@+id/bukti_pembayaran"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/upload_bukti_bayar" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
 
+        <Button
+            android:id="@+id/button_done"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="30dp"
+            android:background="@color/colorAccent"
+            android:text="Saya Sudah Bayar"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
-    <Button
-        android:id="@+id/button_done"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="30dp"
-        android:background="@color/colorAccent"
-        android:text="Saya Sudah Bayar"
-        android:textAllCaps="false"
-        android:textColor="@color/white" />
+    </RelativeLayout>
 
-</RelativeLayout>
+</ScrollView>
