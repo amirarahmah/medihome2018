@@ -54,4 +54,6 @@
     <string name="lihat_detail">Lihat Detail</string>
     <string name="pilih_jadwal">Pilih Jadwal</string>
     <string name="informasi_penolakan">Informasi Penolakan</string>
+
+    <string name="persetujuan">Dengan memilih layanan ini anda menyetujui Syarat &amp; Ketentuan tiap klinik serta kebijakan MediHome</string>
 </resources>

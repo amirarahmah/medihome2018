@@ -19,9 +19,19 @@ import com.vansuita.pickimage.bundle.PickSetup
 import com.vansuita.pickimage.dialog.PickImageDialog
 import com.vansuita.pickimage.enums.EPickType
 import kotlinx.android.synthetic.main.activity_transfer_clinic.*
+import com.google.android.gms.common.util.IOUtils.toByteArray
+import android.graphics.Bitmap
+import android.R.attr.bitmap
+import android.util.Log
+import id.zelory.compressor.Compressor
+import java.io.ByteArrayOutputStream
+import java.io.File
+
 
 class TransferClinicActivity : AppCompatActivity() {
 
+    var imagePath : String = ""
+    var imageBitmap: Bitmap? = null
     var imageUri: Uri? = null
     private var cTimer : CountDownTimer? = null
     lateinit var alertDialog: AlertDialog
@@ -48,7 +58,8 @@ class TransferClinicActivity : AppCompatActivity() {
         bukti_pembayaran.setOnClickListener {
             PickImageDialog.build(setup)
                     .setOnPickResult { pickResult ->
-                        val imageBitmap = pickResult.bitmap
+                        imagePath = pickResult.path
+                        imageBitmap = pickResult.bitmap
                         imageUri = pickResult.uri
                         bukti_pembayaran.setImageBitmap(imageBitmap)
                     }
@@ -68,12 +79,23 @@ class TransferClinicActivity : AppCompatActivity() {
 
     private fun uploadBuktiPembayaran(idReservation: String?) {
         showProgressDialog()
+        val imageFile = File(imagePath)
+
+        val compressedImage = Compressor(this)
+                .setMaxWidth(300)
+                .setMaxHeight(300)
+                .setQuality(50)
+                .compressToBitmap(imageFile)
+
+        val baos = ByteArrayOutputStream()
+        compressedImage?.compress(Bitmap.CompressFormat.JPEG, 50, baos)
+        val data = baos.toByteArray()
+
         val storageReference = FirebaseStorage.getInstance().reference
-        val userId = FirebaseAuth.getInstance().currentUser?.uid
         val filepath = storageReference.child("buktiPembayaran").child("$idReservation.jpg")
 
-        val uploadTask = filepath.putFile(imageUri!!)
-        val urlTask = uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
+        val uploadTask = filepath.putBytes(data)
+        uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
             if (!task.isSuccessful) {
                 task.exception?.let {
                     throw it
