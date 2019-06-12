@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                supportActionBar?.title = "MediHome"
+                supportActionBar?.title = "HaloMedis"
                 updateFragment(HomeFragment())
                 return@OnNavigationItemSelectedListener true
             }

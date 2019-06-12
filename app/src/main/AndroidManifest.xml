@@ -80,7 +80,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".DummyActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+
+        </activity>
         <activity
             android:name=".ui.booking_kamar.NearbyHospitalActivity"
             android:screenOrientation="portrait" />

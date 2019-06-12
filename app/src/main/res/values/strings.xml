@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MediHome</string>
+    <string name="app_name">HaloMedis</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -56,4 +56,10 @@
     <string name="informasi_penolakan">Informasi Penolakan</string>
 
     <string name="persetujuan">Dengan memilih layanan ini anda menyetujui Syarat &amp; Ketentuan tiap klinik serta kebijakan MediHome</string>
+    <string name="medihospital">MediHospital</string>
+    <string name="mediclinic">MediClinic</string>
+    <string name="mediagnosis">Mediagnosis</string>
+    <string name="mediblood">MediBlood</string>
+    <string name="medipharmacy">MediPharmacy</string>
+    <string name="mediarticle">MediArticle</string>
 </resources>
